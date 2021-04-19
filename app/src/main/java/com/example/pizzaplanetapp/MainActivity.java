@@ -30,16 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-/*        pizzaMenu = (Button) findViewById(R.id.pizzaMenuButton);
-        pizzaMenu.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(this, PizzaMenu.class);
-                startActivity(intent);
 
-            }
-
-        });*/
 
     }
 
@@ -77,10 +68,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-/*    public void openPizzaMenu(View view) {
-        Intent intent = new Intent(this, PizzaMenu.class);
-        startActivity(intent);
 
-
-    }*/
 }
