@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     VideoView videov;
     MediaController mediaC;
     public Button pizzaMenu;
+    public ImageView blastOff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         playVideo();
-        pizzaMenu = (Button) findViewById(R.id.pizzaMenuButton);
-        pizzaMenu.setOnClickListener(new View.OnClickListener() {
+
+        blastOff = (ImageView) findViewById(R.id.blastOff);
+        blastOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, PizzaMenu.class));
@@ -32,12 +35,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+/*        pizzaMenu = (Button) findViewById(R.id.pizzaMenuButton);
+        pizzaMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PizzaMenu.class));
+            }
+
+        });*/
+
+
     }
 
-    public void playVideo(){
+    public void playVideo() {
         videov = (VideoView) findViewById(R.id.videoView);
         mediaC = new MediaController(this);
-        videov.setVideoPath("android.resource://"+getPackageName()+"/"+R.raw.toystorypizzaplanet);
+        videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.toystorypizzaplanet);
         mediaC.setAnchorView(videov);
         videov.setMediaController(mediaC);
         videov.start();
@@ -66,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         videov.stopPlayback();
     }
-
 
 
 }
