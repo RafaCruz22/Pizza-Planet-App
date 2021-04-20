@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     VideoView videov;
     MediaController mediaC;
-    public Button pizzaMenu;
     public ImageView blastOff;
 
     @Override
@@ -34,15 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-/*        pizzaMenu = (Button) findViewById(R.id.pizzaMenuButton);
-        pizzaMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, PizzaMenu.class));
-            }
-
-        });*/
 
 
     }
