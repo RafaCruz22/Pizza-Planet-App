@@ -6,36 +6,45 @@ Project Resonsiblity Form
          Activity1 - Richard(RB)
          Activity2 - Richard(RB)
          Activity3 some methods - Person Responsible
-         Activity3 some other methods - Person Responsible
-         ..... etcetera....
+         Activity4 some other methods - Person Responsible
+         Activity5 some methods – Person Responsible
+
 
 [20 pts] Use of explicit & implicit intents as needed 
-        Intent1 from, to  - Richard(RB) (data to pass if any)
+        Intent1 from Main Activity, to PizzaMenu - Richard(RB) (data to pass if any)
         Intent2 from, to  - Person Responsible (data to pass if any)
         IntentN from, to  - Person Responsible (data to pass if any)
+
 
 [10 pts] Use at least one of the following:  Notifications | Alarms | Broadcasts Receivers
       In this part of the app, Notification(s) for XYZ created by   - Person Responsible
       In this part of the app, Alarm(s) for XYZ created by   - Person Responsible
       In this part of the app, Broadcast(s) and/or Broacast Receiver(s) for XYZ created by   - Person Responsible
 
+
 [10 pts] Use proper Material Design Layouts and Styles
         Person(s) Responsible
 
-[10 pts] Use of at least one of the following:  Recyclerview |  CardLayout | (TabLayout)
+
+[10 pts] Use of at least one of the following:  Recyclerview | CardLayout | (TabLayout)
        Data Person(s) Responsible
        ViewHolder Person(s) Responsible
        Adapter Person(s)= Richard(RB) (TABLAYOUT)
        Event Listener(s) Person(s) Responsible
 
+
 [10 pts] Include Menus, Preferences, Settings
        Person(s) Responsible Java portion
        Person(s) Responsible XML portion
 
+
 [10 pts] Use of Threads where needed
        TBD
+
 
 [10 pts] File Usage and/or Database
        Person(s) Responsible for each/some/all CRUD operations (CRUD = Create Review Update Delete)
 
+
 Extra Credit [10 pts] for using Firebase, Weather API, Books API, some external API…
+
