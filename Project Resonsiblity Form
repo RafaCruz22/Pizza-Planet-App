@@ -3,14 +3,14 @@ Project Resonsiblity Form
 
 
 [20 pts] Multiple activities
-         Activity1 - Person Responsible
-         Activity2 - Person Responsible
+         Activity1 - Richard(RB)
+         Activity2 - Richard(RB)
          Activity3 some methods - Person Responsible
          Activity3 some other methods - Person Responsible
          ..... etcetera....
 
 [20 pts] Use of explicit & implicit intents as needed 
-        Intent1 from, to  - Person Responsible (data to pass if any)
+        Intent1 from, to  - Richard(RB) (data to pass if any)
         Intent2 from, to  - Person Responsible (data to pass if any)
         IntentN from, to  - Person Responsible (data to pass if any)
 
@@ -22,10 +22,10 @@ Project Resonsiblity Form
 [10 pts] Use proper Material Design Layouts and Styles
         Person(s) Responsible
 
-[10 pts] Use of at least one of the following:  Recyclerview |  CardLayout | TabLayout
+[10 pts] Use of at least one of the following:  Recyclerview |  CardLayout | (TabLayout)
        Data Person(s) Responsible
        ViewHolder Person(s) Responsible
-       Adapter Person(s) Responsible
+       Adapter Person(s)= Richard(RB) (TABLAYOUT)
        Event Listener(s) Person(s) Responsible
 
 [10 pts] Include Menus, Preferences, Settings
