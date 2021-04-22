@@ -47,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop(){
+        super.onStop();
+        videov.stopPlayback();
+        videov.resume();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         videov.start();

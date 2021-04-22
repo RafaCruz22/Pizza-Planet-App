@@ -34,8 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="339dp"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:configChanges="orientation|screenSize" />
+        android:layout_marginTop="0dp" />
 </FrameLayout>
 
     <ImageView
