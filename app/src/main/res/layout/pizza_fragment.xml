@@ -12,75 +12,66 @@
 
         <TextView
             android:id="@+id/pizza_item1"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Margherita Pizza"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/margherita_pizza" />
 
-<!--        <Button
-            android:id="@+id/addbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="ADD" />-->
+        <!--        <Button
+                    android:id="@+id/addbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="ADD" />-->
 
         <TextView
             android:id="@+id/pizza_item2"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Pepperoni Pizza"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/pepperoni_pizza" />
 
         <TextView
             android:id="@+id/pizza_item3"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Sausage Pizza"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/sausage_pizza" />
 
         <TextView
             android:id="@+id/pizza_item4"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Buffalo Pizza"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/buffalo_pizza" />
 
         <TextView
             android:id="@+id/pizza_item5"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Capricciosa Pizza"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/capricciosa_pizza" />
 
         <TextView
             android:id="@+id/pizza_item6"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Bacon Pizza"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/bacon_pizza" />
 
         <TextView
             android:id="@+id/pizza_item7"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Chicken Pizza"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/chicken_pizza" />
 
         <TextView
             android:id="@+id/pizza_item8"
+            style="@style/AppTheme.DefaultFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Prosciutto and Rocket"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
+            android:text="@string/prosciutto_and_rocket" />
 
     </LinearLayout>
 

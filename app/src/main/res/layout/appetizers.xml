@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/app_mozzarellaSticks"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mozzarella_sticks" />
+
+        <TextView
+            android:id="@+id/app_garlicKnots"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/garlic_knots" />
+
+        <TextView
+            android:id="@+id/app_wings"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buffalo_wings" />
+
+
+    </LinearLayout>
+
+</ScrollView>

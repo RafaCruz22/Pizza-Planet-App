@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bev_water"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/water" />
+
+        <TextView
+            android:id="@+id/bev_sprite"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sprite" />
+
+        <TextView
+            android:id="@+id/bev_coke"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coca_cola" />
+
+        <TextView
+            android:id="@+id/bev_Pepsi"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pepsi" />
+
+        <TextView
+            android:id="@+id/bev_IcedTea"
+            style="@style/AppTheme.DefaultFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/iced_tea" />
+
+    </LinearLayout>
+
+</ScrollView>
