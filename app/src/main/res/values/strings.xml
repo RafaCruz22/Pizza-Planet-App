@@ -17,4 +17,9 @@
     <string name="chicken_pizza">Chicken Pizza</string>
     <string name="prosciutto_and_rocket">Prosciutto and Rocket</string>
     <string name="margherita_pizza">Margherita Pizza</string>
+    <string name="fab_desc">takes user to cart</string>
+    <string name="pizzaplanetbanner">pizzaPlanetBanner</string>
+    <string name="tv_emptyCart_text">Shopping Cart Is Empty</string>
+    <string name="btn_return_menu_text">Return To Menu</string>
+    <string name="iv_emptyCart_text">emptyCart</string>
 </resources>

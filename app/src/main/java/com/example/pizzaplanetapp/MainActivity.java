@@ -1,21 +1,33 @@
 package com.example.pizzaplanetapp;
 
-import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     VideoView videov;
     MediaController mediaC;
     public ImageView blastOff;
+
+    //Reference to database in particular its pizza node (RD)
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("pizza");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +40,24 @@ public class MainActivity extends AppCompatActivity {
         blastOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, PizzaMenu.class));
+                startActivity(new Intent(MainActivity.this, Menu.class));
             }
 
         });
+
+        //logs the entire pizza node. so all of the pizza items (RD)
+        myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    Log.d("firebase inside Main", String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });
+
 
 
 
@@ -40,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public void playVideo() {
         videov = (VideoView) findViewById(R.id.videoView);
         mediaC = new MediaController(this);
-        videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.toystorypizzaplanet);
+        videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
         mediaC.setAnchorView(videov);
         videov.setMediaController(mediaC);
         videov.start();

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/pizzaPlanet"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:contentDescription="@string/pizzaplanetbanner"
+        android:scaleType="centerCrop"
+        android:src="@drawable/stretchedpizza" />
+
+    <ImageView
+        android:id="@+id/emptyCartLogo"
+        android:layout_width="202dp"
+        android:layout_height="207dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/iv_emptyCart_text"
+        android:src="@drawable/emptyshoppingcart"/>
+
+    <TextView
+        android:id="@+id/tv_emptyCart"
+        android:layout_below="@id/emptyCartLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:text="@string/tv_emptyCart_text"/>
+
+    <Button
+        android:id="@+id/btn_return_to_menu"
+        android:layout_below="@id/tv_emptyCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:text="@string/btn_return_menu_text"
+        android:onClick="ReturnToMenu"/>
+
+
+</LinearLayout>
