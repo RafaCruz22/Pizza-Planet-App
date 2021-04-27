@@ -1,24 +1,33 @@
 package com.example.pizzaplanetapp;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class Menu extends AppCompatActivity {
 
-    //change from "PIZZAMENU" to "Menu"
     public static final String TAG = "Menu";
     private TabLayout tabLayout;
     private TabLayout.Tab tab1, tab2, tab3;
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
+    private FloatingActionButton fabButton;
+    private RecyclerView mRecyclerView;
+    private ArrayList<MenuItem> MenuItem;
+    private MenuItemAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +37,18 @@ public class Menu extends AppCompatActivity {
 
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabLayout);
+        fabButton = findViewById(R.id.floatingActionButton);
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "inside of onClick for FAB");
+                Intent shoppingIntent = new Intent(Menu.this, ShoppingCart.class);
+                startActivity(shoppingIntent);
+                Log.d(TAG, "end of onClick for FAB");
+
+            }
+        });
+
 
         tabLayout.addTab(tabLayout.newTab().setText("Pizza"));
         tabLayout.addTab(tabLayout.newTab().setText("Appetizers"));
@@ -37,13 +58,14 @@ public class Menu extends AppCompatActivity {
                 tabLayout.getTabCount());
 
         viewPager.setAdapter(pagerAdapter);
+        int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int currPos = tab.getPosition();
-                Log.d(TAG, "Inside onTabSelection: tab position = "+currPos);
+                Log.d(TAG, "Inside onTabSelection: tab position = " + currPos);
                 viewPager.setCurrentItem(currPos);
 
             }
@@ -61,19 +83,6 @@ public class Menu extends AppCompatActivity {
         });
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        //(RD) added fab to take user to cart when they desire
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "inside of onClick for FAB");
-                Intent shoppingIntent = new Intent(getApplicationContext(),ShoppingCart.class);
-                startActivity(shoppingIntent);
-                Log.d(TAG, "end of onClick for FAB");
-
-            }
-        });
 
 
     }

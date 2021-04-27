@@ -29,10 +29,11 @@ public class ShoppingCart extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.cart_shopping_empty);
         Log.d(TAG, "inside of onCreate");
 
         //if there isn't an order show empty cart layout otherwise show users cart
-        if(shoppingCartData == null){
+        if (shoppingCartData == null) {
             Log.d(TAG, "cart is empty");
             setContentView(R.layout.cart_shopping_empty);
             getEmptyCartReference();
@@ -44,24 +45,26 @@ public class ShoppingCart extends AppCompatActivity {
             //Fab allows user to complete there order
             FloatingActionButton fab = findViewById(R.id.completeOrderFAB);
             fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "inside of onClick for FAB");
-                Intent completeOrderIntent = new Intent(ShoppingCart.this,OrderComplete.class);
-                startActivity(completeOrderIntent);
-                Toast.makeText(ShoppingCart.this, "You're order is complete.", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "end of onClick for FAB");
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG, "inside of onClick for FAB");
+                    Intent completeOrderIntent = new Intent(ShoppingCart.this, OrderComplete.class);
+                    startActivity(completeOrderIntent);
+                    Toast.makeText(ShoppingCart.this, "You're order is complete.", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "end of onClick for FAB");
 
-            }
+                }
             });
+
+
+            Log.d(TAG, "end of onCreate");
         }
-
-        Log.d(TAG, "end of onCreate");
-
     }
 
+
+
     // gets all the reference for the empty cart layout
-    private void getEmptyCartReference() {
+    private void getEmptyCartReference(){
         Log.d(TAG, "inside of getEmptyCartReference");
         iv_emptyCart = findViewById(R.id.emptyCartLogo);
         tv_emptyCart = findViewById(R.id.tv_emptyCart);
