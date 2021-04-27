@@ -28,6 +28,7 @@ public class Menu extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ArrayList<MenuItem> MenuItem;
     private MenuItemAdapter mAdapter;
+    private ArrayList<ShoppingCart> carts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,19 @@ public class Menu extends AppCompatActivity {
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "inside of onClick for FAB");
-                Intent shoppingIntent = new Intent(Menu.this, ShoppingCart.class);
-                startActivity(shoppingIntent);
-                Log.d(TAG, "end of onClick for FAB");
 
+                if(carts == null){
+                    Log.d(TAG, "inside of onClick for FAB");
+                    Intent shoppingIntent = new Intent(Menu.this, EmptyCart.class);
+                    startActivity(shoppingIntent);
+                    Log.d(TAG, "end of onClick for FAB");
+                } else {
+                    Log.d(TAG, "inside of onClick for FAB");
+                    Intent shoppingIntent = new Intent(Menu.this, ShoppingCart.class);
+                    startActivity(shoppingIntent);
+                    Log.d(TAG, "end of onClick for FAB");
+
+                }
             }
         });
 

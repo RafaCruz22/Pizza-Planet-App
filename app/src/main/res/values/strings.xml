@@ -95,4 +95,5 @@
     <string name="tv_emptyCart_text">Shopping Cart Is Empty</string>
     <string name="btn_return_menu_text">Return To Menu</string>
     <string name="iv_emptyCart_text">emptyCart</string>
+    <string name="shopping_cart_fab_desc">fab to complete order</string>
 </resources>

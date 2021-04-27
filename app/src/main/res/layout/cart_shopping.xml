@@ -12,21 +12,26 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:contentDescription="@string/pizzaplanetbanner"
         android:scaleType="centerCrop"
         android:src="@drawable/stretchedpizza"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/completeOrderFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:contentDescription="@string/fab_desc"
-        android:src="@drawable/ic_action_completeorder"
-        android:layout_marginBottom="@dimen/default_fab_margin"
-        android:layout_marginRight="@dimen/default_fab_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="47dp"
+        android:backgroundTint="#06EC06"
+        android:clickable="true"
+        android:contentDescription="@string/shopping_cart_fab_desc"
+        android:src="@drawable/ic_action_orderdone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

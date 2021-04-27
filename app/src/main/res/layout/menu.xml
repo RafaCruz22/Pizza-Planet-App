@@ -61,7 +61,7 @@
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="47dp"
         android:clickable="true"
-        app:srcCompat="@drawable/emptycart"
+        app:srcCompat="@drawable/ic_action_shoppingcart"
         android:backgroundTint="#06EC06"
         />
 
