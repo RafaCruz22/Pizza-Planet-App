@@ -6,6 +6,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,18 +56,17 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
         private TextView mTitleText;
         private TextView mDescriptionText;
         private ImageView mMealImage;
-        private TextView mMealDetail;
+        private Button mMealButton;
 
 
         public MenuItemHolder(View itemView) {
             super(itemView);
 
 
-
             mTitleText = itemView.findViewById(R.id.title);
             mDescriptionText = itemView.findViewById(R.id.description);
             mMealImage = itemView.findViewById(R.id.mealImage);
-            mMealDetail = itemView.findViewById(R.id.meal);
+            mMealButton = itemView.findViewById(R.id.meal);
 
 
 
@@ -86,9 +86,19 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
 
         public void bindTo(MenuItem currentMeal) {
             mTitleText.setText(currentMeal.getTitle());
-            mMealDetail.setText(currentMeal.getDetail());
+            mMealButton.setText(currentMeal.getDetail());
             mDescriptionText.setText(currentMeal.getInfo());
             Glide.with(mContext).load(currentMeal.getImageResource()).into(mMealImage);
+            ///Add to cart meal button
+            mMealButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(mContext, "Add to cart:"+ mTitleText.getText(), Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            });
 
         }
 
