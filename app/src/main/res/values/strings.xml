@@ -1,4 +1,77 @@
 <resources>
+    <string name="title">Title</string>
+    <string name="food_description">Food Description</string>
+    <string name="add_meal">Add Meal</string>
+    <string name="menuimage">MealImage</string>
+    <string name="removed">ITEM REMOVED!</string>
+    <string name="reset">Reset!</string>
+
+
+    <string-array name="meal_titles">
+        <item>Pepperoni Pizza</item>
+        <item>Sausage Pizza</item>
+        <item>Buffalo Pizza</item>
+        <item>Capricciosa Pizza</item>
+        <item>Prosciutto and Rocket</item>
+        <item>Chicken Pizza</item>
+        <item>Margherita Pizza</item>
+        <item>Cheese and Garlic Pizza</item>
+        <item>Salad Pizza</item>
+        <item>Meat Lover Pizza</item>
+        <item>Quattro Formaggio</item>
+    </string-array>
+
+
+
+
+
+
+    <string-array name="meal_info">
+        <item>Tasty Pepperoni Pizza</item>
+        <item>Yummy Sausage Pizza</item>
+        <item>Yummy Buffalo Pizza</item>
+        <item>Delicious Capricciosa Pizza</item>
+        <item>Yummy Prosciutto and Rocket</item>
+        <item>Tasty Chicken Pizza</item>
+        <item>Yummy Margherita Pizza</item>
+        <item>Tasty Cheese and Garlic Pizza</item>
+        <item>Fresh Salad Pizza</item>
+        <item>Yummy Meat Lover Pizza</item>
+        <item>Yummy Quattro Formaggio</item>
+    </string-array>
+
+    <array name="meal_images">
+        <item>@drawable/img_pepperoni</item>
+        <item>@drawable/img_sausage</item>
+        <item>@drawable/img_buffalo_pizza</item>
+        <item>@drawable/img_capricciosa</item>
+        <item>@drawable/img_prosciutto_and_rocket</item>
+        <item>@drawable/img_chicken</item>
+        <item>@drawable/img_margherita</item>
+        <item>@drawable/img_cheese_and_garlic</item>
+        <item>@drawable/img_salad_pizza</item>
+        <item>@drawable/img_meatlover</item>
+        <item>@drawable/img_quattro_formaggio</item>
+    </array>
+
+    <string-array name="meal_detail">
+        <item>Add Pepperoni </item>
+        <item>Add Sausage Pizza </item>
+        <item>Add Buffalo Pizza </item>
+        <item>Add Capricciosa Pizza </item>
+        <item>Add Prosciutto and Rocket </item>
+        <item>Add Chicken Pizza </item>
+        <item>Add Margherita Pizza </item>
+        <item>Add Cheese and Garlic Pizza </item>
+        <item>Add Salad Pizza </item>
+        <item>Add Meat Lover Pizza </item>
+        <item>Add Quattro Formaggio </item>
+    </string-array>
+
+
+
+
+
     <string name="app_name">Pizza Planet App</string>
     <string name="pizza_and_beyond">TO PIZZA AND BEYOND!</string>
     <string name="mozzarella_sticks">Mozzarella Sticks</string>

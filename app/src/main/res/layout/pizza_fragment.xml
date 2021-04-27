@@ -1,78 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".PizzaFragment">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:configChanges="orientation"/>
 
-        <TextView
-            android:id="@+id/pizza_item1"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/margherita_pizza" />
-
-        <!--        <Button
-                    android:id="@+id/addbutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="ADD" />-->
-
-        <TextView
-            android:id="@+id/pizza_item2"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pepperoni_pizza" />
-
-        <TextView
-            android:id="@+id/pizza_item3"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sausage_pizza" />
-
-        <TextView
-            android:id="@+id/pizza_item4"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/buffalo_pizza" />
-
-        <TextView
-            android:id="@+id/pizza_item5"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/capricciosa_pizza" />
-
-        <TextView
-            android:id="@+id/pizza_item6"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bacon_pizza" />
-
-        <TextView
-            android:id="@+id/pizza_item7"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/chicken_pizza" />
-
-        <TextView
-            android:id="@+id/pizza_item8"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/prosciutto_and_rocket" />
-
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

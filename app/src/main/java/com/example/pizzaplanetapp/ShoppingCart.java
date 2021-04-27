@@ -41,7 +41,7 @@ public class ShoppingCart extends AppCompatActivity {
             Log.d(TAG, "cart has an item");
             setContentView(R.layout.cart_shopping);
 
-            //Fab allows user to complete their order
+            //Fab allows user to complete there order
             FloatingActionButton fab = findViewById(R.id.completeOrderFAB);
             fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +49,6 @@ public class ShoppingCart extends AppCompatActivity {
                 Log.d(TAG, "inside of onClick for FAB");
                 Intent completeOrderIntent = new Intent(ShoppingCart.this,OrderComplete.class);
                 startActivity(completeOrderIntent);
-                finish();
                 Toast.makeText(ShoppingCart.this, "You're order is complete.", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "end of onClick for FAB");
 
@@ -61,7 +60,7 @@ public class ShoppingCart extends AppCompatActivity {
 
     }
 
-    // holds all the references for the empty cart layout
+    // gets all the reference for the empty cart layout
     private void getEmptyCartReference() {
         Log.d(TAG, "inside of getEmptyCartReference");
         iv_emptyCart = findViewById(R.id.emptyCartLogo);
@@ -74,7 +73,6 @@ public class ShoppingCart extends AppCompatActivity {
         Log.d(TAG, "inside of ReturnToMenu");
         Intent returnToMenuIntent = new Intent(getApplicationContext(),Menu.class);
         startActivity(returnToMenuIntent);
-        finish();
         Log.d(TAG, "end of ReturnToMenu");
     }
 }

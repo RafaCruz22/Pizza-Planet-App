@@ -53,6 +53,22 @@
         android:scaleType="centerCrop"
         android:src="@drawable/blastoff" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="305dp"
+        android:layout_marginTop="598dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="77dp"
+        android:contentDescription="@string/fab_desc"
+        app:srcCompat="@drawable/ic_action_shoppingcart"
+        android:visibility="gone"
+        />
 
 
 </RelativeLayout>

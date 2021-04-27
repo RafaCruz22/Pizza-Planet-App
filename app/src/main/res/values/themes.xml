@@ -14,4 +14,15 @@
         <item name="android:textSize">22sp</item>
         <item name="android:textAppearanceLarge">@style/TextAppearance.AppCompat.Large</item>
     </style>
+
+    <style name="DetailText"
+        parent="TextAppearance.AppCompat.Headline"/>
+    <style name="Title"
+        parent="TextAppearance.AppCompat.Headline"/>
+    <style name="Detail"
+        parent="TextAppearance.AppCompat.Headline"/>
+
+    <style name="Theme.TipCalculatorMp4.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.TipCalculatorMp4.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
