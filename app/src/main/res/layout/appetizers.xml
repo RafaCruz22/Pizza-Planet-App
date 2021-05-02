@@ -8,26 +8,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.DefaultFont"
+            android:text="Add Mozzarella Sticks to cart"/>
         <TextView
             android:id="@+id/app_mozzarellaSticks"
             style="@style/AppTheme.DefaultFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mozzarella_sticks" />
+            android:text="@string/mozzarella_sticks"
+            android:background="@drawable/mozzarella_sticks"/>
 
         <TextView
             android:id="@+id/app_garlicKnots"
             style="@style/AppTheme.DefaultFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/garlic_knots" />
+            android:text="@string/garlic_knots"
+            android:background="@drawable/garlic_knots"/>
 
         <TextView
             android:id="@+id/app_wings"
             style="@style/AppTheme.DefaultFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/buffalo_wings" />
+            android:text="@string/buffalo_wings"
+            android:background="@drawable/buffalo_wings"/>
 
 
     </LinearLayout>
