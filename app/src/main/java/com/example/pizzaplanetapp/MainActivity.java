@@ -31,11 +31,6 @@ public class MainActivity extends AppCompatActivity {
     MediaController mediaC;
     public ImageView blastOff;
 
-
-    //Reference to database in particular its pizza node (RD)
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("pizza");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,22 +48,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-        //logs the entire pizza node. so all of the pizza items (RD)
-        myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    Log.d("firebase inside Main", String.valueOf(task.getResult().getValue()));
-                }
-            }
-        });
-
-
-
 
     }
 

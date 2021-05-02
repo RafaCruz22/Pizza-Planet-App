@@ -5,52 +5,49 @@ public class MenuItem {
     private String title;
     private String description;
     private String detail;
-    private final int imageResource;
+    private String imageResource;
 
 
-    /**
-     * Constructor for the MenuItem data model.
-     *
-     * @param title       The name if the sport.
-     * @param description Information about the sport.
-     */
+    MenuItem() { //needed for Firebase
+    }
 
-
-    MenuItem(String title, String description, String detail, int imageResource) {
+    MenuItem(String title, String description, String detail, String imageResource) {
         this.title = title;
         this.description = description;
         this.detail = detail;
         this.imageResource = imageResource;
-
     }
 
-    public int getImageResource() {
-        return imageResource;
-    }
-
-
-    /**
-     * Gets the title of the Meal.
-     *
-     * @return The title of the Meal.
-     */
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
+    public String getDetail() {
+        return detail;
+    }
 
-    /**
-     * Gets the info about the Meal.
-     *
-     * @return The info about the MEal.
-     */
-    String getInfo() {
+    public String getDescription() {
         return description;
     }
 
+    public String getImageResource() {
+        return imageResource;
+    }
 
-    String getDetail() {
-        return detail;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public void setImageResource(String imageResource) {
+        this.imageResource = imageResource;
     }
 
 

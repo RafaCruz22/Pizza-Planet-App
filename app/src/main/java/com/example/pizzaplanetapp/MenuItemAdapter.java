@@ -3,6 +3,7 @@ package com.example.pizzaplanetapp;
 import android.content.Context;
 import android.content.Intent;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,13 +69,8 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
             mMealImage = itemView.findViewById(R.id.mealImage);
             mMealButton = itemView.findViewById(R.id.meal);
 
-
-
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
-
-
-
 
         }
 
@@ -87,17 +83,17 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
         public void bindTo(MenuItem currentMeal) {
             mTitleText.setText(currentMeal.getTitle());
             mMealButton.setText(currentMeal.getDetail());
-            mDescriptionText.setText(currentMeal.getInfo());
+            mDescriptionText.setText(currentMeal.getDescription());
             Glide.with(mContext).load(currentMeal.getImageResource()).into(mMealImage);
             ///Add to cart meal button
             mMealButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //log below is just to see something
+                    Log.d("added to cart", "title: " + mTitleText.getText() + "\tImage: " + mMealImage.getDrawable());
                     Toast.makeText(mContext, "Add to cart:"+ mTitleText.getText(), Toast.LENGTH_SHORT).show();
 
                 }
-
-
             });
 
         }
