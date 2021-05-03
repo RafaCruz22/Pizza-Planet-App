@@ -76,8 +76,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
 
         @Override
         public void onClick(View v) {
-        //add item to cart?
-
+            //using button instead
         }
 
         public void bindTo(MenuItem currentMeal) {
@@ -89,9 +88,9 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
             mMealButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //log below is just to see something
-                    Log.d("added to cart", "title: " + mTitleText.getText() + "\tImage: " + mMealImage.getDrawable());
-                    Toast.makeText(mContext, "Add to cart:"+ mTitleText.getText(), Toast.LENGTH_SHORT).show();
+                    //log below is a temp toast
+                    Log.d("added to cart", "title: " + mTitleText.getText());
+                    Toast.makeText(mContext, "Add to cart:" + mTitleText.getText(), Toast.LENGTH_SHORT).show();
 
                 }
             });

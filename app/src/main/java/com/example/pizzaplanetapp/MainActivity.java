@@ -27,9 +27,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public ImageView blastOff;
     VideoView videov;
     MediaController mediaC;
-    public ImageView blastOff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

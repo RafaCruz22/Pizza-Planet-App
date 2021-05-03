@@ -3,6 +3,7 @@ package com.example.pizzaplanetapp;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,8 +31,8 @@ import java.util.ArrayList;
 public class PizzaFragment extends Fragment {
 
     public static final String TAG = "PizzaFragment";
-    protected static final String PIZZA_KEY_NUM ="pizza_key";
-    private TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8;
+    protected static final String PIZZA_KEY_NUM = "pizza_key";
+    private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
     private FloatingActionButton fabButton;
     private RecyclerView mRecyclerView;
     private ArrayList<MenuItem> MenuItem;
@@ -43,7 +44,7 @@ public class PizzaFragment extends Fragment {
     //variables to hold the pizzas. need an array?
 
 
-    public PizzaFragment(){
+    public PizzaFragment() {
         //required empty public constructor
 
     }
@@ -54,8 +55,8 @@ public class PizzaFragment extends Fragment {
 
         int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
         // Inflate the layout for this fragment
-        if(savedInstanceState !=null){
-         //   myNum = savedInstanceState.getInt(KEY_TAB1_NUM,99);
+        if (savedInstanceState != null) {
+            //   myNum = savedInstanceState.getInt(KEY_TAB1_NUM,99);
         }
 
 
@@ -77,8 +78,17 @@ public class PizzaFragment extends Fragment {
         mAdapter = new MenuItemAdapter(getContext(), MenuItem);
         mRecyclerView.setAdapter(mAdapter);
 
-//        initializeData();
-        //adds the data from the database basically initialize the data.
+        // initializeData with firebase
+        initializeData();
+
+
+        return rootView;
+
+    }
+
+
+    // initializeData with firebase
+    public void initializeData() {
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,57 +109,41 @@ public class PizzaFragment extends Fragment {
             }
         });
 
-        return rootView;
-
     }
 
 
-    // don't think anything below is needed
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //gain references to views
-
+    // initializeData locally using strings.
 /*
-        tv1 = getActivity().findViewById(R.id.pizza_item1);
-        tv2 = getActivity().findViewById(R.id.pizza_item2);
-        tv3 = getActivity().findViewById(R.id.pizza_item3);
-        tv4 = getActivity().findViewById(R.id.pizza_item4);
-        tv5 = getActivity().findViewById(R.id.pizza_item5);
-        tv6 = getActivity().findViewById(R.id.pizza_item6);
-        tv7 = getActivity().findViewById(R.id.pizza_item7);
-        tv8 = getActivity().findViewById(R.id.pizza_item8);
-*/
+    public void initializeData() {
+        TypedArray mealImageResources = getResources().obtainTypedArray(R.array.meal_images);
 
+        // Get the resources from the XML file.
+        String[] menuList = getResources()
+                .getStringArray(R.array.meal_titles);
+        String[] mealInfo = getResources()
+                .getStringArray(R.array.meal_info);
+        String[] mealDetail = getResources()
+                .getStringArray(R.array.meal_detail);
+
+
+        // Clear the existing data (to avoid duplication).
+        MenuItem.clear();
+
+        // Create the ArrayList of Menu objects with titles and
+        // information about each item.
+        for (int i = 0; i < menuList.length; i++) {
+            MenuItem.add(new MenuItem(menuList[i], mealInfo[i], mealDetail[i],
+                    mealImageResources.getResourceId(i, 0)));
+        }
+        //Clean up the data in the typed array once you have created the MenuItem ArrayList
+        mealImageResources.recycle();
+
+        // Notify the adapter of the change.
+        mAdapter.notifyDataSetChanged();
 
 
     }
-
-
-//    //loading of data happens here
-//    public void initializeData() {
-//        TypedArray mealImageResources = getResources().obtainTypedArray(R.array.meal_images);
-//
-//
-//        // Clear the existing data (to avoid duplication).
-//        MenuItem.clear();
-//
-//        // Create the ArrayList of Menu objects with titles and
-//        // information about each item.
-//        for (int i = 0; i < 3; i++) {
-//            MenuItem.add(new MenuItem(
-//                    mealImageResources.getResourceId(i, 0)));
-//        }
-//        //Clean up the data in the typed array once you have created the MenuItem ArrayList
-//        mealImageResources.recycle();
-//
-//        // Notify the adapter of the change.
-//        mAdapter.notifyDataSetChanged();
-//
-//
-//    }
-
-
+*/
 
 
 }
