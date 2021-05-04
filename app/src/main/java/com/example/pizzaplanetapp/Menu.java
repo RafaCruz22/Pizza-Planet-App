@@ -6,7 +6,13 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
@@ -28,7 +34,7 @@ public class Menu extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ArrayList<MenuItem> MenuItem;
     private MenuItemAdapter mAdapter;
-    private ArrayList<ShoppingCart> carts;
+    private static Boolean cart = false;//cart is always empty unless user puts something in cart
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +49,16 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(carts == null){
-                    Log.d(TAG, "inside of onClick for FAB");
+                if(cart == false){
+                    Log.d(TAG, "inside of onClick for empty cart FAB");
                     Intent shoppingIntent = new Intent(Menu.this, EmptyCart.class);
                     startActivity(shoppingIntent);
-                    Log.d(TAG, "end of onClick for FAB");
+                    Log.d(TAG, "end of onClick for empty cart FAB");
                 } else {
-                    Log.d(TAG, "inside of onClick for FAB");
+                    Log.d(TAG, "inside of onClick for full cart FAB");
                     Intent shoppingIntent = new Intent(Menu.this, ShoppingCart.class);
                     startActivity(shoppingIntent);
-                    Log.d(TAG, "end of onClick for FAB");
+                    Log.d(TAG, "end of onClick for full cart FAB");
 
                 }
             }
@@ -94,5 +100,15 @@ public class Menu extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
+    }
+
+    //resets the cart to empty
+    public static void resetCart() {
+        cart = false;
+    }
+
+    //sets carts to full
+    public static void cartFull(){
+        cart = true;
     }
 }

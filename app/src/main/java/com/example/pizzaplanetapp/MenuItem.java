@@ -6,6 +6,7 @@ public class MenuItem {
     private String description;
     private String detail;
     private String imageResource;
+    private String price;
 
     MenuItem() { //needed for Firebase
     }
@@ -16,15 +17,24 @@ public class MenuItem {
      **/
 
 
-    //imageResource changed from int to String for support of firebase
+    //imageResource changed from int to String for support of firebase HTTPS
     //locally we would use the int imageResource, return the int
     // and pull from strings.
-    MenuItem(String title, String description, String detail, String imageResource) {
+    MenuItem(String title, String description, String detail, String imageResource, String price) {
         this.title = title;
         this.description = description;
         this.detail = detail;
         this.imageResource = imageResource;
+        this.price = price;
 
+    }
+    /**
+     * Gets the price of the Meal.
+     *
+     * @return The price of the meal.
+     */
+    public String getPrice() {
+        return price;
     }
 
     /**

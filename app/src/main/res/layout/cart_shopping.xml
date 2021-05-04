@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/pizzaPlanet"
+
+    <LinearLayout
+        android:id="@+id/logoLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/pizzaPlanetLogo"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            android:contentDescription="@string/pizzaplanetbanner"
+            android:scaleType="centerCrop"
+            android:src="@drawable/stretchedpizza"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shoping Cart"
+            android:textStyle="bold|italic"
+            android:textSize="23sp"
+            android:textAlignment="center"
+            />
+
+    </LinearLayout>
+
+
+    <include
+        layout="@layout/cart_fragment"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:contentDescription="@string/pizzaplanetbanner"
-        android:scaleType="centerCrop"
-        android:src="@drawable/stretchedpizza"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoLayout"
+        android:layout_marginTop="5dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/completeOrderFAB"
@@ -33,10 +57,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="144dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
