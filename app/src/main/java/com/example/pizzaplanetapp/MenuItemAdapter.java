@@ -17,13 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuItemHolder> {
 
-    public static ArrayList<MenuItem> mMenuItem;
-    public static Context mContext;
+    private static ArrayList<MenuItem> mMenuItem;
+    private static Context mContext;
+
+    FirebaseDatabase database;//Firebase variable
+    private static int counter = 0; //used to create a new item in cart
 
     MenuItemAdapter(Context context, ArrayList<MenuItem> MenuItem) {
         this.mMenuItem = MenuItem;
@@ -88,12 +93,33 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
             mMealButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    writeToDatabaseCart(currentMeal);
+
+                    //user is trying to add a item to cart, cart is no longer empty so set it to full
+                    Menu.cartFull();
+
                     //log below is a temp toast
-                    Log.d("added to cart", "title: " + mTitleText.getText());
-                    Toast.makeText(mContext, "Add to cart:" + mTitleText.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Add to cart: " + mTitleText.getText(), Toast.LENGTH_SHORT).show();
 
                 }
             });
+
+        }
+
+        //creates a "cart" node in the firebase database to represent
+        // a shopping cart with the items a user selects
+        private void writeToDatabaseCart(MenuItem currentMeal){
+            counter++;
+            database = FirebaseDatabase.getInstance();
+            DatabaseReference mRef = database.getReference().child("cart").child("item" + counter);
+            mRef.child("title").setValue(currentMeal.getTitle());
+            mRef.child("imageResource").setValue(currentMeal.getImageResource());
+            mRef.child("price").setValue(currentMeal.getPrice());
+
+            //detail & description of the item isn't needed for cart ebut here just in case
+            //mRef.child("detail").setValue(mTitleText.getText());
+            //mRef.child("description").setValue(mTitleText.getText());
 
         }
 
@@ -101,5 +127,11 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
         public boolean onLongClick(View v) {
             return false;
         }
+
     }
+    //resets the cart item counter to zero
+    public static void resetCounter(){
+        counter = 0;
+    }
+
 }
