@@ -1,22 +1,25 @@
 package com.example.pizzaplanetapp;
 
 public class MenuItem {
-    // Member variables representing the title and information about the sport.
+    // Member variables representing the title and information about the item.
     private String title;
     private String description;
     private String detail;
-    private final int imageResource;
+    private String imageResource;
+
+    MenuItem() { //needed for Firebase
+    }
 
 
     /**
      * Constructor for the MenuItem data model.
-     *
-     * @param title       The name if the sport.
-     * @param description Information about the sport.
-     */
+     **/
 
 
-    MenuItem(String title, String description, String detail, int imageResource) {
+    //imageResource changed from int to String for support of firebase
+    //locally we would use the int imageResource, return the int
+    // and pull from strings.
+    MenuItem(String title, String description, String detail, String imageResource) {
         this.title = title;
         this.description = description;
         this.detail = detail;
@@ -24,7 +27,12 @@ public class MenuItem {
 
     }
 
-    public int getImageResource() {
+    /**
+     * Gets the image of the Meal.
+     *
+     * @return The image of the meal.
+     */
+    public String getImageResource() {
         return imageResource;
     }
 
@@ -34,7 +42,8 @@ public class MenuItem {
      *
      * @return The title of the Meal.
      */
-    String getTitle() {
+
+    public String getTitle() {
         return title;
     }
 
@@ -44,12 +53,18 @@ public class MenuItem {
      *
      * @return The info about the MEal.
      */
-    String getInfo() {
+    //temp if needed
+    public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the detail about the Meal.
+     *
+     * @return The detail about the meal.
+     */
 
-    String getDetail() {
+    public String getDetail() {
         return detail;
     }
 

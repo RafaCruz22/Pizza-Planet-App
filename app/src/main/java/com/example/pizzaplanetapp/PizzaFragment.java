@@ -3,6 +3,7 @@ package com.example.pizzaplanetapp;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,15 +31,20 @@ import java.util.ArrayList;
 public class PizzaFragment extends Fragment {
 
     public static final String TAG = "PizzaFragment";
-    protected static final String PIZZA_KEY_NUM ="pizza_key";
-    private TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8;
+    protected static final String PIZZA_KEY_NUM = "pizza_key";
+    private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
     private FloatingActionButton fabButton;
     private RecyclerView mRecyclerView;
     private ArrayList<MenuItem> MenuItem;
     private MenuItemAdapter mAdapter;
 
+    DatabaseReference database;
 
-    public PizzaFragment(){
+
+    //variables to hold the pizzas. need an array?
+
+
+    public PizzaFragment() {
         //required empty public constructor
 
     }
@@ -49,8 +55,8 @@ public class PizzaFragment extends Fragment {
 
         int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
         // Inflate the layout for this fragment
-        if(savedInstanceState !=null){
-         //   myNum = savedInstanceState.getInt(KEY_TAB1_NUM,99);
+        if (savedInstanceState != null) {
+            //   myNum = savedInstanceState.getInt(KEY_TAB1_NUM,99);
         }
 
 
@@ -58,6 +64,9 @@ public class PizzaFragment extends Fragment {
 
         // Initialize the RecyclerView.
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
+
+        //Reference to firebase database starting at pizza node
+        database = FirebaseDatabase.getInstance().getReference("pizza");
 
         // Set the Layout Manager.
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), gridColumnCount));
@@ -69,31 +78,42 @@ public class PizzaFragment extends Fragment {
         mAdapter = new MenuItemAdapter(getContext(), MenuItem);
         mRecyclerView.setAdapter(mAdapter);
 
+        // initializeData with firebase
         initializeData();
+
+
         return rootView;
 
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //gain references to views
 
-/*
-        tv1 = getActivity().findViewById(R.id.pizza_item1);
-        tv2 = getActivity().findViewById(R.id.pizza_item2);
-        tv3 = getActivity().findViewById(R.id.pizza_item3);
-        tv4 = getActivity().findViewById(R.id.pizza_item4);
-        tv5 = getActivity().findViewById(R.id.pizza_item5);
-        tv6 = getActivity().findViewById(R.id.pizza_item6);
-        tv7 = getActivity().findViewById(R.id.pizza_item7);
-        tv8 = getActivity().findViewById(R.id.pizza_item8);
-*/
+    // initializeData with firebase
+    public void initializeData() {
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
+                    MenuItem item = dataSnapshot.getValue(MenuItem.class);
+                    MenuItem.add(item);
+                    Log.d("items", "" + MenuItem);
+                }
+
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
+
+    // initializeData locally using strings.
+/*
     public void initializeData() {
         TypedArray mealImageResources = getResources().obtainTypedArray(R.array.meal_images);
 
@@ -123,8 +143,7 @@ public class PizzaFragment extends Fragment {
 
 
     }
-
-
+*/
 
 
 }
