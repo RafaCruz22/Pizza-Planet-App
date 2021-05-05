@@ -11,51 +11,55 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnCount="3"
+            android:columnCount="2"
             >
 
             <TextView
                 android:id="@+id/bev_water"
                 style="@style/AppTheme.DefaultFont"
                 android:layout_width="wrap_content"
+                android:paddingVertical="8dp"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
                 android:layout_column="0"
-                android:layout_gravity="center"
+                android:layout_gravity="left"
+
                 android:text="@string/water" />
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_water"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ATC"
                 android:layout_row="0"
-                android:layout_column="2"
+                android:layout_column="1"
+                android:layout_gravity="start"
                 android:padding="16dp"
-                />
-
+                android:text="@string/add_to_cart" />
 
             <TextView
-            android:id="@+id/bev_sprite"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sprite"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_gravity="center"/>
+                android:id="@+id/bev_sprite"
+                style="@style/AppTheme.DefaultFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_gravity="left"
+                android:paddingVertical="8dp"
+                android:text="@string/sprite" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_sprite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ATC"
                 android:layout_row="1"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:padding="16dp"
+                android:text="@string/add_to_cart"
+
                 />
 
-        <TextView
+            <TextView
             android:id="@+id/bev_coke"
             style="@style/AppTheme.DefaultFont"
             android:layout_width="wrap_content"
@@ -63,15 +67,17 @@
             android:text="@string/coca_cola"
             android:layout_row="2"
             android:layout_column="0"
-            android:layout_gravity="center"/>
+            android:layout_gravity="left"
+            android:paddingVertical="8dp"
+                />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_coke"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ATC"
+                android:text="@string/add_to_cart"
                 android:layout_row="2"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:padding="16dp"
                 />
 
@@ -83,16 +89,19 @@
             android:text="@string/pepsi"
             android:layout_row="3"
             android:layout_column="0"
-            android:layout_gravity="center"/>
+            android:layout_gravity="left"
+            android:paddingVertical="8dp"
+            />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_Pepsi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ATC"
+                android:text="@string/add_to_cart"
                 android:layout_row="3"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:padding="16dp"
+
                 />
 
             <TextView
@@ -102,16 +111,18 @@
                 android:layout_height="wrap_content"
                 android:layout_row="4"
                 android:layout_column="0"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/iced_tea"/>
+                android:layout_gravity="left"
+                android:text="@string/iced_tea"
+                android:paddingVertical="8dp"
+                />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_tea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ATC"
+                android:text="@string/add_to_cart"
                 android:layout_row="4"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:padding="16dp"
                 />
 

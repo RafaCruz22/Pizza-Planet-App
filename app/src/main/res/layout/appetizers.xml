@@ -1,58 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_appetizers"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:configChanges="orientation"
+        />
 
-        <Button
-            android:id="@+id/btn_mozzalrella"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/AppTheme.DefaultFont"
-            android:text="Add Mozzarella Sticks to cart"/>
-        <TextView
-            android:id="@+id/app_mozzarellaSticks"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mozzarella_sticks"
-            android:background="@drawable/mozzarella_sticks"/>
-
-        <Button
-            android:id="@+id/btn_garlicKnots"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/AppTheme.DefaultFont"
-            android:text="Add Garlic Knots to cart"/>
-
-        <TextView
-            android:id="@+id/app_garlicKnots"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/garlic_knots"
-            android:background="@drawable/garlic_knots"/>
-
-        <Button
-            android:id="@+id/btn_buffaloWings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/AppTheme.DefaultFont"
-            android:text="Add Buffalo Wings to cart"/>
-
-        <TextView
-            android:id="@+id/app_wings"
-            style="@style/AppTheme.DefaultFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/buffalo_wings"
-            android:background="@drawable/buffalo_wings"/>
-
-
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

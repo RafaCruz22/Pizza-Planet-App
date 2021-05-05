@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 public class BeveragesFragment extends Fragment {
 
     public static final String TAG = "BevFragment";
-    private TextView tv_water, tv_sprite, tv_coke, tv_pepsi, tv_icedTea;
+    private Button btn_water, btn_sprite, btn_coke, btn_tea, btn_pepsi;
     private FloatingActionButton fabButton;
     private RecyclerView mRecyclerView;
     private ArrayList<MenuItem> MenuItem;
@@ -34,6 +35,13 @@ public class BeveragesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        btn_water = getActivity().findViewById(R.id.btn_water);
+        btn_coke = getActivity().findViewById(R.id.btn_coke);
+        btn_sprite = getActivity().findViewById(R.id.btn_sprite);
+        btn_tea = getActivity().findViewById(R.id.btn_tea);
+        btn_pepsi = getActivity().findViewById(R.id.btn_Pepsi);
+
 
         return inflater.inflate(R.layout.beverages, container, false);
     }
