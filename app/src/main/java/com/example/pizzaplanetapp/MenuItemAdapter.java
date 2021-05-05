@@ -86,7 +86,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
 
         public void bindTo(MenuItem currentMeal) {
             mTitleText.setText(currentMeal.getTitle());
-            mMealButton.setText(currentMeal.getDetail());
+            mMealButton.setText(currentMeal.getDetail() + " price: $" + currentMeal.getPrice() );
             mDescriptionText.setText(currentMeal.getDescription());
             Glide.with(mContext).load(currentMeal.getImageResource()).into(mMealImage);
             ///Add to cart meal button

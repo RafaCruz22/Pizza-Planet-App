@@ -10,24 +10,11 @@ public class MenuItem {
 
     MenuItem() { //needed for Firebase
     }
-
-
     /**
      * Constructor for the MenuItem data model.
      **/
 
 
-    //imageResource changed from int to String for support of firebase HTTPS
-    //locally we would use the int imageResource, return the int
-    // and pull from strings.
-    MenuItem(String title, String description, String detail, String imageResource, String price) {
-        this.title = title;
-        this.description = description;
-        this.detail = detail;
-        this.imageResource = imageResource;
-        this.price = price;
-
-    }
     /**
      * Gets the price of the Meal.
      *
