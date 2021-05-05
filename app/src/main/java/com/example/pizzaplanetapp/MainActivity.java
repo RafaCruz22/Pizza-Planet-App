@@ -31,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
     VideoView videov;
     MediaController mediaC;
 
+    DatabaseReference database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        deleteCartOnStartUp();//assures a cart does not exist in database at startup
 
         int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
 
@@ -91,5 +95,10 @@ public class MainActivity extends AppCompatActivity {
         videov.stopPlayback();
     }
 
+    private void deleteCartOnStartUp() {
+        database = FirebaseDatabase.getInstance().getReference();
+        database.child("cart").removeValue();
 
+
+    }
 }

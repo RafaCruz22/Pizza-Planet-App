@@ -29,6 +29,7 @@
             android:textStyle="bold|italic"
             android:textSize="23sp"
             android:textAlignment="center"
+            android:background="#D2042D"
             />
 
     </LinearLayout>
@@ -39,7 +40,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/logoLayout"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_above="@id/priceLayoutCart"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/priceLayoutCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D2042D">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: "
+            android:textStyle="bold|italic"
+            android:textSize="23sp"
+            android:textAlignment="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:id="@+id/totalPriceCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$000"
+            android:textAlignment="center"
+            android:textSize="23sp"
+            android:textStyle="bold|italic"
+            android:layout_marginBottom="5dp"/>
+
+    </LinearLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/completeOrderFAB"

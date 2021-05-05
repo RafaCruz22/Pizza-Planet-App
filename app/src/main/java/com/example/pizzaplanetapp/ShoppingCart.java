@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,17 +35,18 @@ public class ShoppingCart extends AppCompatActivity {
     private ShoppingCartAdapter shoppingAdapter;
     private FloatingActionButton completeOrder;
 
-    DatabaseReference database;
+    DatabaseReference database,removeCart;
 
-    private int totalPrice;
-    private float itemCount = 0;
+    private static float totalPrice;
+    private int itemCount = 0;
+    private TextView textTotalPrice;
 
     ItemTouchHelper itemTouchHelper;// for drag and swipe
 
     private int girdColumnCount = 1;
 
-    private int dragDirections = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-    private int swipeDirection = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+    private int dragDirections = 0;
+    private int swipeDirection = ItemTouchHelper.LEFT |ItemTouchHelper.RIGHT;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,31 +59,10 @@ public class ShoppingCart extends AppCompatActivity {
         if(girdColumnCount > 1){swipeDirection = 0; }
 
 
-        itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(dragDirections,swipeDirection) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                int from = viewHolder.getAdapterPosition();
-                int to = target.getAdapterPosition();
-                Collections.swap(cartData,from,to);
-                shoppingAdapter.notifyItemMoved(from,to);
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Log.d("before remove swip", " item: " + (cartData.get(viewHolder.getAdapterPosition())).getTitle());
-                cartData.remove(viewHolder.getAdapterPosition());//using the view holder you can get it's position
-                Log.d("after remove swip", " "+ cartData);
-
-                shoppingAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-
-            }
-        });
-
         recyclerView = findViewById(R.id.recyclerCartView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, girdColumnCount));
 
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        textTotalPrice = findViewById(R.id.totalPriceCart);
 
         //Reference to firebase database starting at pizza node
         database = FirebaseDatabase.getInstance().getReference("cart");
@@ -89,7 +70,44 @@ public class ShoppingCart extends AppCompatActivity {
         // initialize the array that will be used to hold the cart items
         cartData = new ArrayList<>();
         shoppingAdapter = new ShoppingCartAdapter(this, cartData);
+
         recyclerView.setAdapter(shoppingAdapter);
+
+
+        itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(dragDirections,swipeDirection) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int viewPosition = viewHolder.getAdapterPosition();
+
+                itemCount--;//item count decreases due to removing of item
+
+                totalPrice -=  Float.valueOf(cartData.get(viewPosition).getPrice());
+
+                //gets reference to "cart" node in database and deletes the swiped item from database
+                removeCart = FirebaseDatabase.getInstance().getReference("cart");
+                removeCart.child("item" + cartData.get(viewPosition).getPosition())
+                        .removeValue();
+
+                cartData.remove(viewPosition);//removes swiped item from the cart array
+
+                //if all items are removed from cart set its price to zero
+                if(cartData.isEmpty()){
+                    textTotalPrice.setText("$000");
+                }
+
+                shoppingAdapter.notifyItemRemoved(viewPosition);
+
+            }
+
+        });
+
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         loadData();
 
@@ -103,6 +121,7 @@ public class ShoppingCart extends AppCompatActivity {
                 database.removeValue();//removes cart from database
                 Menu.resetCart();//set cart to false **removed above
                 MenuItemAdapter.resetCounter();//reset item
+                Menu.resetCounter();//set counter back to zero
 
 
                 //starts the bill summary aka orderComplete
@@ -114,8 +133,6 @@ public class ShoppingCart extends AppCompatActivity {
                 Log.d(TAG, "end of onCreate -> onClick FAB");
             }
         });
-
-        int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
 
         Log.d(TAG, "end of onCreate");
 
@@ -129,6 +146,9 @@ public class ShoppingCart extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                cartData.clear();//assures no duplicates are introduced
+                resetTotalPrice();//reset price to zero
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     itemCount++;//keeps track of the number of items in cart
                     CartItem item = dataSnapshot.getValue(CartItem.class);
@@ -136,7 +156,10 @@ public class ShoppingCart extends AppCompatActivity {
                     //keeps track of total price of cart
                     if (item.getPrice() != null) {
                         totalPrice += Float.valueOf(item.getPrice());
+
                     }
+                    //sets the total of the cart as items are added or removed
+                    textTotalPrice.setText("$" + String.format("%.2f", totalPrice));
                     cartData.add(item);
                 }
                 shoppingAdapter.notifyDataSetChanged();
@@ -151,4 +174,24 @@ public class ShoppingCart extends AppCompatActivity {
         Log.d(TAG, "end of loadData");
     }
 
+    //if cart doesn't exist in database when menu is onPause then set the cart to empty
+    @Override
+    protected void onPause() {
+        super.onPause();
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists() == false){
+                    Menu.resetCart();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public static void resetTotalPrice(){ totalPrice = 0;}
 }

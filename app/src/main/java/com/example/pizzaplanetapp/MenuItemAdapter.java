@@ -28,7 +28,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
     private static Context mContext;
 
     FirebaseDatabase database;//Firebase variable
-    private static int counter = 0; //used to create a new item in cart
+    private static int counter = Menu.getCounter(); //used to create a new item in cart
 
     MenuItemAdapter(Context context, ArrayList<MenuItem> MenuItem) {
         this.mMenuItem = MenuItem;
@@ -110,12 +110,14 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
         //creates a "cart" node in the firebase database to represent
         // a shopping cart with the items a user selects
         private void writeToDatabaseCart(MenuItem currentMeal){
-            counter++;
+
             database = FirebaseDatabase.getInstance();
-            DatabaseReference mRef = database.getReference().child("cart").child("item" + counter);
+            DatabaseReference mRef = database.getReference().child("cart").child("item" + Menu.getCounter());
             mRef.child("title").setValue(currentMeal.getTitle());
             mRef.child("imageResource").setValue(currentMeal.getImageResource());
             mRef.child("price").setValue(currentMeal.getPrice());
+            mRef.child("position").setValue(String.valueOf(Menu.getCounter()));
+            Menu.increaseCartCount();
 
             //detail & description of the item isn't needed for cart ebut here just in case
             //mRef.child("detail").setValue(mTitleText.getText());

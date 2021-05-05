@@ -81,7 +81,7 @@ public class PizzaFragment extends Fragment {
         // initializeData with firebase
         initializeData();
 
-
+        mAdapter.notifyDataSetChanged();
         return rootView;
 
     }
@@ -93,13 +93,13 @@ public class PizzaFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                MenuItem.clear();//assures no duplicates are introduced
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     MenuItem item = dataSnapshot.getValue(MenuItem.class);
                     MenuItem.add(item);
                     Log.d("items", "" + MenuItem);
                 }
-
                 mAdapter.notifyDataSetChanged();
             }
 

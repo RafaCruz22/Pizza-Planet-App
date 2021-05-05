@@ -1,19 +1,11 @@
 package com.example.pizzaplanetapp;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -35,6 +27,7 @@ public class Menu extends AppCompatActivity {
     private ArrayList<MenuItem> MenuItem;
     private MenuItemAdapter mAdapter;
     private static Boolean cart = false;//cart is always empty unless user puts something in cart
+    private static int counter = 0; //used to create a new item in cart
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,4 +104,12 @@ public class Menu extends AppCompatActivity {
     public static void cartFull(){
         cart = true;
     }
+
+    public static void increaseCartCount(){++counter;}
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void resetCounter(){counter = 0;}
 }

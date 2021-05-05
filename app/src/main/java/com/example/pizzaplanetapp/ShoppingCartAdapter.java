@@ -48,7 +48,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
         return cartData.size();
     }
 
-    protected class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
+    protected class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textName, textPrice;
         private ImageView imageView;
@@ -63,7 +63,6 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
             textPrice = itemView.findViewById(R.id.cartMealPrice);
             imageView = itemView.findViewById(R.id.mealItemImage);
 
-            itemView.setOnLongClickListener(this);
             Log.d(TAG, "end of of ViewHolder");
         }
 
@@ -77,21 +76,6 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
             Log.d(TAG, "end of bindItem");
         }
 
-        @Override
-        public boolean onLongClick(View v) {
-
-            Log.d(TAG, "inside of onLongClick");
-
-
-
-            Log.d(TAG, "end of onLongClick");
-            return false;
-        }
     }
-
-
-
-
-
 
 }

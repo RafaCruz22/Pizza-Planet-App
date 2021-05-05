@@ -25,8 +25,8 @@ public class AppetizersFragment extends Fragment {
 
     public static final String TAG = "AppetizerFragment";
     private RecyclerView recyclerViewAppetizer;
-    private MenuItemAdapter adapter;
-    private ArrayList<MenuItem> menuItem;
+    private AppetizerAdapter adapter;
+    private ArrayList<AppetizerItem> appetizerItem;
 
     DatabaseReference database;
 
@@ -40,20 +40,23 @@ public class AppetizersFragment extends Fragment {
         int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
         View rootView = inflater.inflate(R.layout.appetizers,container,false);
 
-        recyclerViewAppetizer = rootView.findViewById(R.id.recyclerview_appetizers);
+        recyclerViewAppetizer = (RecyclerView) rootView.findViewById(R.id.recyclerview_appetizers);
 
 
         //Reference to firebase database starting at pizza node
-        database = FirebaseDatabase.getInstance().getReference("pizza");
+        database = FirebaseDatabase.getInstance().getReference("appetizers");
 
         recyclerViewAppetizer.setLayoutManager(new GridLayoutManager(getContext(),gridColumnCount));
 
-        menuItem = new ArrayList<>();
-        adapter = new MenuItemAdapter(getContext(),menuItem);
+        appetizerItem = new ArrayList<>();
+
+        adapter = new AppetizerAdapter(getContext(),appetizerItem);
 
         recyclerViewAppetizer.setAdapter(adapter);
 
         initializeData();
+
+        adapter.notifyDataSetChanged();
 
         return rootView;
     }
@@ -68,13 +71,13 @@ public class AppetizersFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                appetizerItem.clear();//assures no duplicates are introduced
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    MenuItem item = dataSnapshot.getValue(MenuItem.class);
-                    menuItem.add(item);
-                    Log.d("items", "" + menuItem);
+                    AppetizerItem item = dataSnapshot.getValue(AppetizerItem.class);
+                    appetizerItem.add(item);
+                    Log.d("items", "" + appetizerItem);
                 }
-
                 adapter.notifyDataSetChanged();
             }
 
