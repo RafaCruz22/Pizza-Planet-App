@@ -62,7 +62,7 @@
         android:layout_marginBottom="47dp"
         android:clickable="true"
         app:srcCompat="@drawable/ic_action_shoppingcart"
-        android:backgroundTint="#06EC06"
+        android:backgroundTint="@color/green"
         />
 
 

@@ -49,9 +49,6 @@ public class OrderComplete extends AppCompatActivity {
         totalPrice = intent.getExtras().get("total price");
         itemCount = intent.getExtras().get("item count");
 
-        Log.d("moreass", "" + intent.getExtras().get("total price"));
-        Log.d("moreass", "" + intent.getExtras().get("item count"));
-
 
         recyclerView = findViewById(R.id.recyclerCartView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, girdColumnCount));
