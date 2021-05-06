@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -36,6 +38,7 @@ public class ShoppingCart extends AppCompatActivity {
     private FloatingActionButton completeOrder;
 
     DatabaseReference database,removeCart;
+    FirebaseDatabase fireBase;//Firebase variable
 
     private static float totalPrice;
     private int itemCount = 0;
@@ -81,6 +84,7 @@ public class ShoppingCart extends AppCompatActivity {
                 return false;
             }
 
+            //removes an item from the cart by swiping it left or right
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int viewPosition = viewHolder.getAdapterPosition();
@@ -109,6 +113,7 @@ public class ShoppingCart extends AppCompatActivity {
 
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
+        //loads the data from firebase
         loadData();
 
         //takes user to order summary and resets values and cart
@@ -123,10 +128,13 @@ public class ShoppingCart extends AppCompatActivity {
                 MenuItemAdapter.resetCounter();//reset item
                 Menu.resetCounter();//set counter back to zero
 
+                //writes the cart to an order node basically for pizza planet
+                commitOrderToDatabase();
 
                 //starts the bill summary aka orderComplete
                 Intent completeOrderIntent = new Intent(getApplicationContext(),OrderComplete.class);
                 completeOrderIntent.putExtra("item count",itemCount);
+                completeOrderIntent.putExtra("total price",totalPrice);
                 startActivity(completeOrderIntent);
                 finish();
 
@@ -135,6 +143,19 @@ public class ShoppingCart extends AppCompatActivity {
         });
 
         Log.d(TAG, "end of onCreate");
+    }
+
+    //writes the completed cart to order
+    private void commitOrderToDatabase() {
+
+        for(int i = 0;i < itemCount;i++) {
+
+            fireBase = FirebaseDatabase.getInstance();
+            DatabaseReference mRef = fireBase.getReference().child("order").child("item" + i);
+            mRef.child("title").setValue(cartData.get(i).getTitle());
+            mRef.child("price").setValue(cartData.get(i).getPrice());
+
+        }
 
     }
 

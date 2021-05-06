@@ -13,30 +13,63 @@
         android:scaleType="centerCrop"
         android:src="@drawable/stretchedpizza"/>
 
-
-    <ScrollView
-        android:id="@+id/billsScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/pizzaPlanet"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:layout_above="@id/linn"
-        >
-
-        <TextView
-            android:id="@+id/orderMealName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
-
-    </ScrollView>
-
     <RelativeLayout
-        android:id="@+id/linn"
+        android:id="@+id/labelLayout"
+        android:layout_below="@id/pizzaPlanet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:background="@color/red">
+
+        <TextView
+            android:id="@+id/orderBanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Summary"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/itemOrderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Items:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:layout_below="@id/orderBanner"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:layout_below="@id/orderBanner"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp"/>
+
+    </RelativeLayout>
+
+
+    <include
+        layout="@layout/cart_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelLayout"
+        android:layout_marginTop="5dp"
+        android:layout_above="@id/functionLayout"/>
+
+    <RelativeLayout
+        android:id="@+id/functionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red">
 
 
         <TextView
@@ -47,8 +80,8 @@
             android:textSize="24sp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
-            android:text="Total items: "
-            />
+            android:text="Total Items: "
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/totItemAmountSummary_TextView"
@@ -59,7 +92,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginRight="15dp"
             android:text="Zero"
-            />
+            android:textColor="@color/white"/>
 
 
         <TextView
@@ -71,8 +104,8 @@
             android:textSize="24sp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
-            android:text="Total price: "
-            />
+            android:text="Total Price: "
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/totalAmountSummary_TextView"
@@ -84,8 +117,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginRight="15dp"
             android:text="$00"
-            />
-
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -93,8 +125,9 @@
             android:layout_below="@id/totalLabelSummary"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="100dp"
-            android:text="Message"
-            />
+            android:text="More Info"
+            android:background="@color/green"
+            android:onClick="btn_moreInfo"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -102,7 +135,9 @@
             android:layout_below="@id/totalAmountSummary_TextView"
             android:layout_alignParentRight="true"
             android:layout_marginRight="100dp"
-            android:text="Call Store"/>
+            android:text="Call Store"
+            android:background="@color/green"
+            android:onClick="btn_callStore"/>
 
     </RelativeLayout>
 

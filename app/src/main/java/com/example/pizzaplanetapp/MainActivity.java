@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     private void deleteCartOnStartUp() {
         database = FirebaseDatabase.getInstance().getReference();
         database.child("cart").removeValue();
+        database.child("order").removeValue();
 
 
     }

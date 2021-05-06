@@ -28,8 +28,9 @@
             android:text="Shopping Cart"
             android:textStyle="bold|italic"
             android:textSize="23sp"
+            android:textColor="@color/white"
             android:textAlignment="center"
-            android:background="#D2042D"
+            android:background="@color/red"
             />
 
     </LinearLayout>
@@ -50,12 +51,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#D2042D">
+        android:background="@color/red">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total: "
+            android:textColor="@color/white"
             android:textStyle="bold|italic"
             android:textSize="23sp"
             android:textAlignment="center"
@@ -68,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$000"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="23sp"
             android:textStyle="bold|italic"
@@ -85,7 +88,7 @@
         android:layout_marginTop="135dp"
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="47dp"
-        android:backgroundTint="#06EC06"
+        android:backgroundTint="@color/green"
         android:clickable="true"
         android:contentDescription="@string/shopping_cart_fab_desc"
         android:src="@drawable/ic_action_orderdone"
