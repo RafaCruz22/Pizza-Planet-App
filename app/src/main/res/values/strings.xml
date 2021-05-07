@@ -114,5 +114,6 @@
     <string name="default_contact">Default Contact</string>
     <string name="video_title">Default Video</string>
     <string name="address_title">Default Address</string>
+    <string name="pizza_planet_address">Pixar Animation Studios 1200 Park Avenue Emeryville, California 94608</string>
 
 </resources>

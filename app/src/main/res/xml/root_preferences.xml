@@ -29,7 +29,7 @@
 
         <EditTextPreference
             app:key="address"
-            android:defaultValue="Pizza Planet Address"
+            android:defaultValue="@string/pizza_planet_address"
             app:summary="Address"
             app:title="@string/address_title"
             app:useSimpleSummaryProvider="true"
