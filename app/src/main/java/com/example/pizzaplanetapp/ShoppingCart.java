@@ -53,9 +53,9 @@ public class ShoppingCart extends AppCompatActivity {
     private NotificationManager notificationManager;
     private shoppingCartReceiver myReceiver;
 
-    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
+    private static final String PRIMARY_CHANNEL_ID = "Mascot Notification";
     private static final String PRIMARY_CHANNEL_NAME = "Order Complete Notification";
-    private static final int IMPORTANCE_LEVEL = NotificationManager.IMPORTANCE_DEFAULT;
+    private static final int IMPORTANCE_LEVEL = NotificationManager.IMPORTANCE_HIGH;
     private static final int NOTIFICATION_ID_0 = 0;
 
     String CUSTOM_ACTION = "com.example.pizzaplanetapp.CARTID";

@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetshortvid);
         }
         if (radio_video.equals("medium video")) {
-            // space for medium video path
             videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
         }
         if (radio_video.equals("long video")) {
