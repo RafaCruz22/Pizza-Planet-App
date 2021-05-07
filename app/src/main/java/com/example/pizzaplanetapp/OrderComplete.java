@@ -81,19 +81,9 @@ public class OrderComplete extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 orderData.clear();//assures no duplicates are introduced
-//                resetTotalPrice();//reset price to zero
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    itemCount++;//keeps track of the number of items in cart
                     OrderItem item = dataSnapshot.getValue(OrderItem.class);
-
-                    //keeps track of total price of cart
-                    if (item.getPrice() != null) {
-//                        totalPrice += Float.valueOf(item.getPrice());
-
-                    }
-                    //sets the total of the cart as items are added or removed
-//                    textTotalPrice.setText("$" + String.format("%.2f", totalPrice));
                     orderData.add(item);
                 }
                 orderAdapter.notifyDataSetChanged();
@@ -121,7 +111,7 @@ public class OrderComplete extends AppCompatActivity {
 
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setTitle("Store Information");
-        alertBuilder.setMessage("Address: blah blah blah");
+        alertBuilder.setMessage("Address: 1200 Park Avenue Emeryville, CA 94608");
         alertBuilder.show();
 
     }

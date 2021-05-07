@@ -69,7 +69,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
         public void bindItem(CartItem currItem) {
             Log.d(TAG, "inside of bindItem");
 
-            textName.setText("Meal: " + currItem.getTitle());
+            textName.setText(currItem.getTitle());
             textPrice.setText(" Price: $" + currItem.getPrice());
             Glide.with(context).load(currItem.getImageResource()).into(imageView);
 

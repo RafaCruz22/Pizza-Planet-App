@@ -47,9 +47,8 @@ public class ShoppingCart extends AppCompatActivity {
     ItemTouchHelper itemTouchHelper;// for drag and swipe
 
     private int girdColumnCount = 1;
-
     private int dragDirections = 0;
-    private int swipeDirection = ItemTouchHelper.LEFT |ItemTouchHelper.RIGHT;
+    private int swipeDirection = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -147,7 +146,7 @@ public class ShoppingCart extends AppCompatActivity {
 
     //writes the completed cart to order
     private void commitOrderToDatabase() {
-
+//        int counter = 0;
         for(int i = 0;i < itemCount;i++) {
 
             fireBase = FirebaseDatabase.getInstance();
