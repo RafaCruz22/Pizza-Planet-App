@@ -16,23 +16,23 @@
             android:id="@+id/mealItemImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_margin="10dp"
-            android:contentDescription="@string/logo_descrip" />
+            android:layout_margin="@dimen/margin_cartMealImage"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/cartItem_MealImageDesc" />
 
 
         <TextView
             android:id="@+id/cartMealName"
-            style="@style/textStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="meal name placeholder"
             app:layout_constraintLeft_toLeftOf="@id/mealItemImage"
             app:layout_constraintRight_toLeftOf="@id/cartMealPrice"
-            app:layout_constraintTop_toBottomOf="@id/mealItemImage" />
+            app:layout_constraintTop_toBottomOf="@id/mealItemImage"
+            android:text="@string/cartMealName_default"
+            style="@style/textStyle"/>
 
         <TextView
             android:id="@+id/cartMealPrice"
@@ -40,9 +40,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/mealItemImage"
             app:layout_constraintLeft_toRightOf="@id/cartMealName"
-            android:layout_marginLeft="13dp"
-            android:text="price text placeholder"
-            style="@style/textStyle"/>/>
+            android:layout_marginStart="@dimen/priceTV_margin"
+            android:text="@string/cartMealPrice_default"
+            style="@style/textStyle"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

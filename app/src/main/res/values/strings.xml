@@ -116,4 +116,35 @@
     <string name="address_title">Default Address</string>
     <string name="pizza_planet_address">Pixar Animation Studios 1200 Park Avenue Emeryville, California 94608</string>
 
+
+
+
+    <!--    Cart Item -->
+    <string name="cartItem_MealImageDesc">picture of the meal</string>
+    <string name="cartMealName_default">meal name placeholder</string>
+    <string name="cartMealPrice_default">price text placeholder</string>
+
+    <!--    Order Item-->
+    <string name="orderNameTV_default">meal name placeholder</string>
+    <string name="orderPriceTV_default">price text placeholder</string>
+
+    <!--    Cart Shopping -->
+    <string name="shopping_cartTV_default">Shopping Cart</string>
+    <string name="shopCartTotalTV_defaultText">Total:</string>
+    <string name="shopCartPriceTV_defaultText">$000</string>
+
+
+    <!--    Order Complete-->
+    <string name="orderComplete_logoDesc">Logo</string>
+    <string name="orderBanner_defaultText">Order Complete</string>
+    <string name="orderItemLabel_default">Items:</string>
+    <string name="orderPriceLabel_default">Price:</string>
+    <string name="orderTotalItemLabel_defaultText">Total Items:</string>
+    <string name="orderTotalIeam_countPlaceHolder">Zero</string>
+    <string name="orderTotalPriceLabel_default">Total Price:</string>
+    <string name="orderPrice_placeholder">$00</string>
+    <string name="order_btnMoreInfo_defaultText">More Info</string>
+    <string name="order_btnCallStore_defaultText">Call Store</string>
+
+
 </resources>

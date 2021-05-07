@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,7 +12,8 @@
         android:layout_height="192dp"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/stretchedpizza"/>
+        android:src="@drawable/stretchedpizza"
+        android:contentDescription="@string/orderComplete_logoDesc" />
 
     <RelativeLayout
         android:id="@+id/labelLayout"
@@ -24,34 +26,34 @@
             android:id="@+id/orderBanner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order Summary"
+            android:text="@string/orderBanner_defaultText"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
-            android:textSize="24sp"
+            android:textSize="@dimen/orderBanner_TextSize"
             android:textStyle="bold|italic"/>
 
         <TextView
             android:id="@+id/itemOrderLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Items:"
+            android:text="@string/orderItemLabel_default"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="@dimen/orderComplete_defaultTextSize"
             android:textStyle="bold|italic"
             android:layout_below="@id/orderBanner"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="15dp"/>
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/orderLabel_startMargin"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price:"
+            android:text="@string/orderPriceLabel_default"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="@dimen/orderComplete_defaultTextSize"
             android:textStyle="bold|italic"
             android:layout_below="@id/orderBanner"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="18dp"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/orderPrice_EndMargin"/>
 
     </RelativeLayout>
 
@@ -61,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/labelLayout"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/orderInclude_TopMargin"
         android:layout_above="@id/functionLayout"/>
 
     <RelativeLayout
@@ -76,66 +78,70 @@
             android:id="@+id/totItemsLabelSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/orderItemLabel_StartMargin"
+            android:layout_marginBottom="@dimen/orderItemLabel_BottomMargin"
             android:layout_alignParentStart="true"
-            android:textSize="24sp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:text="Total Items: "
-            android:textColor="@color/white"/>
+            android:text="@string/orderTotalItemLabel_defaultText"
+            android:textSize="@dimen/orderTotalLabel_defaultTextSize"
+
+
+            android:textColor="@color/white"
+            tools:ignore="RelativeOverlap" />
 
         <TextView
             android:id="@+id/totItemAmountSummary_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textSize="24sp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="15dp"
-            android:text="Zero"
-            android:textColor="@color/white"/>
+            android:layout_marginBottom="@dimen/order_defaultMargin"
+            android:layout_marginEnd="@dimen/orderDefault_endMargin"
+            android:layout_alignParentEnd="true"
+            android:text="@string/orderTotalIeam_countPlaceHolder"
+            android:textSize="@dimen/order_defaultTextSize"
+            android:textColor="@color/white"
+            tools:ignore="RelativeOverlap" />
 
 
         <TextView
             android:id="@+id/totalLabelSummary"
+            android:layout_below="@id/totItemsLabelSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/order_defaultMargin"
+            android:layout_marginStart="@dimen/order_defaultMargin"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/totItemsLabelSummary"
-            android:textSize="24sp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:text="Total Price: "
+            android:text="@string/orderTotalPriceLabel_default"
+            android:textSize="@dimen/order_defaultTextSize"
             android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/totalAmountSummary_TextView"
+            android:layout_below="@id/totItemAmountSummary_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/totItemAmountSummary_TextView"
-            android:textSize="24sp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="15dp"
-            android:text="$00"
+            android:layout_marginBottom="@dimen/order_defaultMargin"
+            android:layout_marginEnd="@dimen/orderDefault_endMargin"
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/order_defaultTextSize"
+            android:text="@string/orderPrice_placeholder"
             android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/totalLabelSummary"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="100dp"
-            android:text="More Info"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/order_btnDefaultMargin"
+            android:text="@string/order_btnMoreInfo_defaultText"
             android:background="@color/green"
             android:onClick="btn_moreInfo"/>
 
         <Button
+            android:layout_below="@id/totalAmountSummary_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/totalAmountSummary_TextView"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="100dp"
-            android:text="Call Store"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/order_btnDefaultMargin"
+            android:text="@string/order_btnCallStore_defaultText"
             android:background="@color/green"
             android:onClick="btn_callStore"/>
 

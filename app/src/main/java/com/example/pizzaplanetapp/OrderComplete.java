@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -16,18 +17,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.net.URI;
 import java.util.ArrayList;
 
 public class OrderComplete extends AppCompatActivity {
@@ -87,19 +85,9 @@ public class OrderComplete extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 orderData.clear();//assures no duplicates are introduced
-//                resetTotalPrice();//reset price to zero
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    itemCount++;//keeps track of the number of items in cart
                     OrderItem item = dataSnapshot.getValue(OrderItem.class);
-
-                    //keeps track of total price of cart
-                    if (item.getPrice() != null) {
-//                        totalPrice += Float.valueOf(item.getPrice());
-
-                    }
-                    //sets the total of the cart as items are added or removed
-//                    textTotalPrice.setText("$" + String.format("%.2f", totalPrice));
                     orderData.add(item);
                 }
                 orderAdapter.notifyDataSetChanged();
@@ -163,8 +151,5 @@ public class OrderComplete extends AppCompatActivity {
             ex.printStackTrace();
         }
 
-/*        Intent intent = new Intent(Intent.ACTION_DIAL);//doesn't need manifest permissions
-        intent.setData(Uri.parse(("tel:" + phoneNum)));
-        startActivity(intent);*/
     }
 }

@@ -17,17 +17,17 @@
             android:id="@+id/pizzaPlanetLogo"
             android:layout_width="match_parent"
             android:layout_height="192dp"
-            android:contentDescription="@string/pizzaplanetbanner"
             android:scaleType="centerCrop"
             android:src="@drawable/stretchedpizza"
+            android:contentDescription="@string/pizzaplanetbanner"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Shopping Cart"
+            android:text="@string/shopping_cartTV_default"
             android:textStyle="bold|italic"
-            android:textSize="23sp"
+            android:textSize="@dimen/shoppingCartTV_defaultTextSize"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:background="@color/red"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/logoLayout"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/ShoppingCart_IncludeMargin"
         android:layout_above="@id/priceLayoutCart"/>
 
 
@@ -56,25 +56,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: "
+            android:layout_marginBottom="@dimen/shoppingCartBottomMargin_default"
+            android:text="@string/shopCartTotalTV_defaultText"
             android:textColor="@color/white"
             android:textStyle="bold|italic"
-            android:textSize="23sp"
+            android:textSize="@dimen/shoppingCart_defaultTextSize"
             android:textAlignment="center"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="@dimen/shoppingCartTotalTV_endMargin"
             />
 
         <TextView
             android:id="@+id/totalPriceCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$000"
+            android:layout_marginBottom="@dimen/shoppingCartBottomMargin_default"
+            android:text="@string/shopCartPriceTV_defaultText"
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:textSize="23sp"
-            android:textStyle="bold|italic"
-            android:layout_marginBottom="5dp"/>
+            android:textSize="@dimen/shoppingCart_defaultTextSize"
+            android:textStyle="bold|italic"/>
 
     </LinearLayout>
 
@@ -93,7 +93,8 @@
         android:contentDescription="@string/shopping_cart_fab_desc"
         android:src="@drawable/ic_action_orderdone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="RelativeOverlap" />
 
 
 </RelativeLayout>
