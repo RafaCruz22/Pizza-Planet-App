@@ -1,0 +1,41 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/video_header">
+
+        <ListPreference
+            app:defaultValue="short video"
+            app:entries="@array/video_entries"
+            app:entryValues="@array/video_values"
+            app:key="videos"
+            app:title="@string/video_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/contact_header">
+
+        <EditTextPreference
+            app:key="phone"
+            android:defaultValue="800-123-4567"
+            app:summary="Phone Number"
+            app:title="@string/default_contact"
+            app:useSimpleSummaryProvider="true"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/address_header">
+
+        <EditTextPreference
+            app:key="address"
+            android:defaultValue="Pizza Planet Address"
+            app:summary="Address"
+            app:title="@string/address_title"
+            app:useSimpleSummaryProvider="true"
+            />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

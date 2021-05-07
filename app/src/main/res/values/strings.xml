@@ -22,10 +22,6 @@
     </string-array>
 
 
-
-
-
-
     <string-array name="meal_info">
         <item>Tasty Pepperoni Pizza</item>
         <item>Yummy Sausage Pizza</item>
@@ -55,7 +51,6 @@
     </array>
 
 
-
     <string-array name="meal_detail">
         <item>Add Pepperoni </item>
         <item>Add Sausage Pizza </item>
@@ -83,9 +78,6 @@
     </array>
 
 
-
-
-
     <string name="app_name">Pizza Planet App</string>
     <string name="pizza_and_beyond">TO PIZZA AND BEYOND!</string>
     <string name="mozzarella_sticks">Mozzarella Sticks</string>
@@ -111,4 +103,16 @@
     <string name="iv_emptyCart_text">emptyCart</string>
     <string name="shopping_cart_fab_desc">fab to complete order</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="video_header">Video Intro Configuration</string>
+    <string name="address_header">Address Configuration</string>
+    <string name="contact_header">Contact Configuration</string>
+
+    <!-- Messages Preferences -->
+    <string name="default_contact">Default Contact</string>
+    <string name="video_title">Default Video</string>
+    <string name="address_title">Default Address</string>
+
 </resources>

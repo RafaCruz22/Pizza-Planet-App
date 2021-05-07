@@ -1,6 +1,7 @@
 package com.example.pizzaplanetapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -118,10 +120,12 @@ public class OrderComplete extends AppCompatActivity {
 
     //shows an alert displaying the information like store address
     public void btn_moreInfo(View view) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String address = sharedPref.getString("address","Pizza Planet Address");
 
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setTitle("Store Information");
-        alertBuilder.setMessage("Address: blah blah blah");
+        alertBuilder.setMessage(address);
         alertBuilder.show();
 
     }
@@ -129,8 +133,12 @@ public class OrderComplete extends AppCompatActivity {
     //allows user to make a phone call to store
     public void btn_callStore(View view) {
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String phoneNum = sharedPref.getString("phone","800-123-4567");
+
+
         Intent intent = new Intent(Intent.ACTION_DIAL);//doesn't need manifest permissions
-        intent.setData(Uri.parse("tel:8007777777"));
+        intent.setData(Uri.parse((phoneNum)));
         startActivity(intent);
     }
 }

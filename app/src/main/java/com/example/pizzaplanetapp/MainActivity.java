@@ -4,15 +4,19 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference database;
 
+    public static RelativeLayout videoLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        videoLayout = findViewById(R.id.rLayout);
 
         deleteCartOnStartUp();//assures a cart does not exist in database at startup
 
@@ -53,12 +60,14 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        changeVideo();
+
     }
 
     public void playVideo() {
         videov = (VideoView) findViewById(R.id.videoView);
         mediaC = new MediaController(this);
-        videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
+        //videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
         mediaC.setAnchorView(videov);
         videov.setMediaController(mediaC);
         videov.start();
@@ -102,4 +111,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    ///Setting up menu_main
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void changeVideo() {
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String radio_video = sharedPref.getString("videos", "short video");
+        if (radio_video.equals("short video")) {
+            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
+        }
+        if (radio_video.equals("medium video")) {
+            // space for medium video path
+            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.toystorypizzaplanet);
+        }
+        if (radio_video.equals("long video")) {
+            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.toystorypizzaplanet);
+        }
+
+    }
+
 }
