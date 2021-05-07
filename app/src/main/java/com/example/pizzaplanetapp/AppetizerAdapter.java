@@ -1,6 +1,10 @@
 package com.example.pizzaplanetapp;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +28,7 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
     private  Context context;
     private static ArrayList<AppetizerItem> appetizerItems;
     private static int counter = Menu.getCounter(); //used to create a new item in cart
+    private static Object cartID;
 
     FirebaseDatabase database;//Firebase variable
 
@@ -107,7 +112,8 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
         database = FirebaseDatabase.getInstance();
         DatabaseReference mRef = database
                 .getReference()
-                .child("cart")
+                .child("carts")
+                .child("cart" + ShoppingCart.getCartID())
                 .child("item" + Menu.getCounter());
 
         mRef.child("title")
@@ -129,4 +135,5 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
         //mRef.child("description").setValue(mTitleText.getText());
 
     }
+
 }

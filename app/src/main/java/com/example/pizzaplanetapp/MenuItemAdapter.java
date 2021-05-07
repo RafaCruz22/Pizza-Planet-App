@@ -2,6 +2,7 @@ package com.example.pizzaplanetapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuItemHolder> {
 
@@ -29,6 +31,10 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
 
     FirebaseDatabase database;//Firebase variable
     private static int counter = Menu.getCounter(); //used to create a new item in cart
+    private static String cartID = UUID.randomUUID().toString();
+
+    private ShoppingCart.shoppingCartReceiver myReceiver;
+    String CUSTOM_ACTION = "com.example.pizzaplanetapp.CARTID";
 
     MenuItemAdapter(Context context, ArrayList<MenuItem> MenuItem) {
         this.mMenuItem = MenuItem;
@@ -37,11 +43,29 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
 
     }
 
+
     @NonNull
     @Override
     public MenuItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        broadcastCartID();//sends broadcast of the cart id
+
         return new MenuItemHolder(LayoutInflater.from(mContext).
                 inflate(R.layout.menu_item_cards, parent, false));
+
+    }
+
+    //
+    private void broadcastCartID() {
+        myReceiver = new ShoppingCart.shoppingCartReceiver();
+
+        IntentFilter filter = new IntentFilter(CUSTOM_ACTION);
+        mContext.registerReceiver(myReceiver,filter);
+
+        Intent passCartIDIntent = new Intent();
+        passCartIDIntent.setAction("com.example.pizzaplanetapp.CARTID");
+        passCartIDIntent.putExtra("cart id", cartID);
+        mContext.sendBroadcast(passCartIDIntent);
 
     }
 
@@ -63,7 +87,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
         private TextView mDescriptionText;
         private ImageView mMealImage;
         private Button mMealButton;
-
 
         public MenuItemHolder(View itemView) {
             super(itemView);
@@ -94,7 +117,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
                 @Override
                 public void onClick(View view) {
 
-                    writeToDatabaseCart(currentMeal);
+                    writeToDatabaseCart(currentMeal);//creates a cart in the database
 
                     //user is trying to add a item to cart, cart is no longer empty so set it to full
                     Menu.cartFull();
@@ -112,7 +135,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
         private void writeToDatabaseCart(MenuItem currentMeal){
 
             database = FirebaseDatabase.getInstance();
-            DatabaseReference mRef = database.getReference().child("cart").child("item" + Menu.getCounter());
+            DatabaseReference mRef = database.getReference().child("carts").child("cart" + cartID).child("item" + Menu.getCounter());
             mRef.child("title").setValue(currentMeal.getTitle());
             mRef.child("imageResource").setValue(currentMeal.getImageResource());
             mRef.child("price").setValue(currentMeal.getPrice());

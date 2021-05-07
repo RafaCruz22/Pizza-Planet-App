@@ -19,7 +19,6 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 
     private static final String TAG = "ShoppingCartAdapter";
 
-    private int selectedItem = -1;
     private ArrayList<CartItem> cartData;
     private Context context;
 
@@ -69,8 +68,9 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
         public void bindItem(CartItem currItem) {
             Log.d(TAG, "inside of bindItem");
 
+            String price = " Price: $" + currItem.getPrice();
             textName.setText(currItem.getTitle());
-            textPrice.setText(" Price: $" + currItem.getPrice());
+            textPrice.setText(price);
             Glide.with(context).load(currItem.getImageResource()).into(imageView);
 
             Log.d(TAG, "end of bindItem");

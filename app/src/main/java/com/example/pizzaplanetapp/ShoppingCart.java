@@ -1,10 +1,14 @@
 package com.example.pizzaplanetapp;
 
-import android.content.ContentProviderClient;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.UUID;
 
 public class ShoppingCart extends AppCompatActivity {
 
@@ -37,18 +40,31 @@ public class ShoppingCart extends AppCompatActivity {
     private ShoppingCartAdapter shoppingAdapter;
     private FloatingActionButton completeOrder;
 
-    DatabaseReference database,removeCart;
-    FirebaseDatabase fireBase;//Firebase variable
-
     private static float totalPrice;
     private int itemCount = 0;
+    private String orderId = UUID.randomUUID().toString();//generates a pseudo random number
+    private static Object cartID;
     private TextView textTotalPrice;
 
+    private final int girdColumnCount = 1;
+    private final int dragDirections = 0;
+    private final int swipeDirection = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+
+    private NotificationManager notificationManager;
+    private shoppingCartReceiver myReceiver;
+
+    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
+    private static final String PRIMARY_CHANNEL_NAME = "Order Complete Notification";
+    private static final int IMPORTANCE_LEVEL = NotificationManager.IMPORTANCE_DEFAULT;
+    private static final int NOTIFICATION_ID_0 = 0;
+
+    String CUSTOM_ACTION = "com.example.pizzaplanetapp.CARTID";
+
+    DatabaseReference database,removeCart;
+    FirebaseDatabase fireBase;//Firebase variable
     ItemTouchHelper itemTouchHelper;// for drag and swipe
 
-    private int girdColumnCount = 1;
-    private int dragDirections = 0;
-    private int swipeDirection = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+    public static void resetTotalPrice(){ totalPrice = 0;}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,10 +72,12 @@ public class ShoppingCart extends AppCompatActivity {
         Log.d(TAG, "inside of onCreate");
         setContentView(R.layout.cart_shopping);
 
+        myReceiver = new shoppingCartReceiver();
 
-        //disable swiping for multiple columns
-        if(girdColumnCount > 1){swipeDirection = 0; }
+        IntentFilter filter = new IntentFilter(CUSTOM_ACTION);
+        registerReceiver(myReceiver,filter);
 
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         recyclerView = findViewById(R.id.recyclerCartView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, girdColumnCount));
@@ -67,7 +85,7 @@ public class ShoppingCart extends AppCompatActivity {
         textTotalPrice = findViewById(R.id.totalPriceCart);
 
         //Reference to firebase database starting at pizza node
-        database = FirebaseDatabase.getInstance().getReference("cart");
+        database = FirebaseDatabase.getInstance().getReference("carts");
 
         // initialize the array that will be used to hold the cart items
         cartData = new ArrayList<>();
@@ -90,18 +108,18 @@ public class ShoppingCart extends AppCompatActivity {
 
                 itemCount--;//item count decreases due to removing of item
 
-                totalPrice -=  Float.valueOf(cartData.get(viewPosition).getPrice());
+                totalPrice -=  Float.parseFloat(cartData.get(viewPosition).getPrice());
 
                 //gets reference to "cart" node in database and deletes the swiped item from database
-                removeCart = FirebaseDatabase.getInstance().getReference("cart");
-                removeCart.child("item" + cartData.get(viewPosition).getPosition())
+                removeCart = FirebaseDatabase.getInstance().getReference("carts");
+                removeCart.child("cart" + cartID).child("item" + cartData.get(viewPosition).getPosition())
                         .removeValue();
 
                 cartData.remove(viewPosition);//removes swiped item from the cart array
 
                 //if all items are removed from cart set its price to zero
                 if(cartData.isEmpty()){
-                    textTotalPrice.setText("$000");
+                    textTotalPrice.setText(R.string.deafult_priceText);
                 }
 
                 shoppingAdapter.notifyItemRemoved(viewPosition);
@@ -122,7 +140,7 @@ public class ShoppingCart extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG, "inside of onCreate -> onClick FAB");
 
-                database.removeValue();//removes cart from database
+                database.child("cart" + cartID).removeValue();//removes cart from database
                 Menu.resetCart();//set cart to false **removed above
                 MenuItemAdapter.resetCounter();//reset item
                 Menu.resetCounter();//set counter back to zero
@@ -130,12 +148,17 @@ public class ShoppingCart extends AppCompatActivity {
                 //writes the cart to an order node basically for pizza planet
                 commitOrderToDatabase();
 
+                pickUpNotification();//sends a notification to user, order ready for pick up
+
                 //starts the bill summary aka orderComplete
                 Intent completeOrderIntent = new Intent(getApplicationContext(),OrderComplete.class);
                 completeOrderIntent.putExtra("item count",itemCount);
                 completeOrderIntent.putExtra("total price",totalPrice);
+                completeOrderIntent.putExtra("order id",orderId);
                 startActivity(completeOrderIntent);
                 finish();
+
+//                orderId++;//creates new orders, allowing multiple users to order at same time
 
                 Log.d(TAG, "end of onCreate -> onClick FAB");
             }
@@ -146,11 +169,10 @@ public class ShoppingCart extends AppCompatActivity {
 
     //writes the completed cart to order
     private void commitOrderToDatabase() {
-//        int counter = 0;
         for(int i = 0;i < itemCount;i++) {
 
             fireBase = FirebaseDatabase.getInstance();
-            DatabaseReference mRef = fireBase.getReference().child("order").child("item" + i);
+            DatabaseReference mRef = fireBase.getReference().child("orders").child("order" + orderId).child("item" + i);
             mRef.child("title").setValue(cartData.get(i).getTitle());
             mRef.child("price").setValue(cartData.get(i).getPrice());
 
@@ -162,7 +184,7 @@ public class ShoppingCart extends AppCompatActivity {
     private void loadData() {
         Log.d(TAG, "inside of loadData");
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.child("cart" + cartID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -174,8 +196,9 @@ public class ShoppingCart extends AppCompatActivity {
                     CartItem item = dataSnapshot.getValue(CartItem.class);
 
                     //keeps track of total price of cart
+
                     if (item.getPrice() != null) {
-                        totalPrice += Float.valueOf(item.getPrice());
+                        totalPrice += Float.parseFloat(item.getPrice());
 
                     }
                     //sets the total of the cart as items are added or removed
@@ -194,14 +217,15 @@ public class ShoppingCart extends AppCompatActivity {
         Log.d(TAG, "end of loadData");
     }
 
-    //if cart doesn't exist in database when menu is onPause then set the cart to empty
+    //if cart doesn't exist in database when
+    //menu is onPause then set the cart to empty
     @Override
     protected void onPause() {
         super.onPause();
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists() == false){
+                if(!snapshot.exists()){
                     Menu.resetCart();
                 }
             }
@@ -213,5 +237,64 @@ public class ShoppingCart extends AppCompatActivity {
         });
     }
 
-    public static void resetTotalPrice(){ totalPrice = 0;}
+
+    //activates a notification letting user know order is complete
+    //and order will be ready in 20 minutes
+    protected void pickUpNotification() {
+        Log.d(TAG, "inside sendNotification method");
+
+        NotificationCompat.Builder notificationBuilder;
+        Intent intent = new Intent ( this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,NOTIFICATION_ID_0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if(Build.VERSION.SDK_INT >= 26) {
+            Log.d(TAG, "inside API >-26 block of code");
+            NotificationChannel notificationChannel = new NotificationChannel(PRIMARY_CHANNEL_ID, PRIMARY_CHANNEL_NAME, IMPORTANCE_LEVEL);
+            notificationChannel.setDescription("Reminders");
+            notificationManager.createNotificationChannel(notificationChannel);
+
+            notificationBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
+                    .setContentTitle("Order is complete")
+                    .setContentText("Ready for pick up in 20 minutes!")
+                    .setSmallIcon(R.drawable.ic_action_pizza);
+
+        }else {
+
+            notificationBuilder = new NotificationCompat.Builder(this)
+                    .setPriority(IMPORTANCE_LEVEL)
+                    .setContentTitle("Order is complete")
+                    .setContentText("Ready for pick up in 20 minutes!")
+                    .setSmallIcon(R.drawable.ic_action_pizza);
+
+        }
+
+        notificationBuilder.setContentIntent(pendingIntent);
+        notificationManager.notify(NOTIFICATION_ID_0, notificationBuilder.build());
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(myReceiver);
+        super.onDestroy();
+    }
+
+    public static Object getCartID() {
+        return cartID;
+    }
+
+
+    static class shoppingCartReceiver extends BroadcastReceiver {
+        String CUSTOM_ACTION = "com.example.pizzaplanetapp.CARTID";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action!=null && action.equals(CUSTOM_ACTION)){
+                cartID = intent.getExtras().get("cart id");
+            }
+
+        }
+    }
+
 }

@@ -38,7 +38,7 @@ public class OrderComplete extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<OrderItem> orderData;
     private OrderAdapter orderAdapter;
-    private Object itemCount,totalPrice;
+    private Object itemCount,totalPrice,orderID;
     private TextView textTotalPrice, textTotalItems;
 
     DatabaseReference database;
@@ -52,6 +52,7 @@ public class OrderComplete extends AppCompatActivity {
         Intent intent = getIntent();
         totalPrice = intent.getExtras().get("total price");
         itemCount = intent.getExtras().get("item count");
+        orderID = intent.getExtras().get("order id");
 
 
         recyclerView = findViewById(R.id.recyclerCartView);
@@ -64,7 +65,7 @@ public class OrderComplete extends AppCompatActivity {
         textTotalItems.setText(itemCount.toString());
 
         //Reference to firebase database starting at pizza node
-        database = FirebaseDatabase.getInstance().getReference("order");
+        database = FirebaseDatabase.getInstance().getReference("orders");
 
         // initialize the array that will be used to hold the cart items
         orderData = new ArrayList<>();
@@ -79,8 +80,9 @@ public class OrderComplete extends AppCompatActivity {
     // initializeData with firebase
     private void loadData() {
         Log.d(TAG, "inside of loadData");
+//        database = database.child("order" + orderID);
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.child("order" + orderID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -104,10 +106,9 @@ public class OrderComplete extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-
         database = FirebaseDatabase.getInstance().getReference();
-        database.child("order").removeValue();
+        database.child("orders").child("order" + orderID).removeValue();
+        super.onDestroy();
     }
 
     //shows an alert displaying the information like store address

@@ -145,6 +145,7 @@
     <string name="orderPrice_placeholder">$00</string>
     <string name="order_btnMoreInfo_defaultText">More Info</string>
     <string name="order_btnCallStore_defaultText">Call Store</string>
+    <string name="deafult_priceText">$000</string>
 
 
 </resources>

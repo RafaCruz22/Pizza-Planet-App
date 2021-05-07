@@ -1,17 +1,9 @@
 package com.example.pizzaplanetapp;
 
 import android.content.Intent;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,15 +11,9 @@ import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         videoLayout = findViewById(R.id.rLayout);
-
-        deleteCartOnStartUp();//assures a cart does not exist in database at startup
 
         int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
 
@@ -104,15 +88,6 @@ public class MainActivity extends AppCompatActivity {
         videov.stopPlayback();
     }
 
-    private void deleteCartOnStartUp() {
-        database = FirebaseDatabase.getInstance().getReference();
-        database.child("cart").removeValue();
-        database.child("order").removeValue();
-
-
-    }
-
-
     ///Setting up menu_main
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
@@ -143,11 +118,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String radio_video = sharedPref.getString("videos", "short video");
         if (radio_video.equals("short video")) {
-            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
+            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetshortvid);
         }
         if (radio_video.equals("medium video")) {
             // space for medium video path
-            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.toystorypizzaplanet);
+            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
         }
         if (radio_video.equals("long video")) {
             videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.toystorypizzaplanet);

@@ -38,16 +38,8 @@ public class CartItem {
         return imageResource;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public void setImageResource(String imageResource) {
-        this.imageResource = imageResource;
     }
 
 
