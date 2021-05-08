@@ -122,10 +122,6 @@ public class BeveragesAdapter extends RecyclerView.Adapter<BeveragesAdapter.Beve
 
         Menu.increaseCartCount();
 
-        //detail & description of the item isn't needed for cart ebut here just in case
-        //mRef.child("detail").setValue(mTitleText.getText());
-        //mRef.child("description").setValue(mTitleText.getText());
-
     }
 
 }

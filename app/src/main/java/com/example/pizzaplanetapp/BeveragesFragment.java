@@ -60,7 +60,7 @@ public class BeveragesFragment extends Fragment {
 
         mRecyclerView.setAdapter(mAdapter);
 
-        initializeData();
+        initializeData();//loads all the data to beverages array
 
         mAdapter.notifyDataSetChanged();
 

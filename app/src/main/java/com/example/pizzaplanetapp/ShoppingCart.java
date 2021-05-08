@@ -58,7 +58,7 @@ public class ShoppingCart extends AppCompatActivity {
     private static final int IMPORTANCE_LEVEL = NotificationManager.IMPORTANCE_HIGH;
     private static final int NOTIFICATION_ID_0 = 0;
 
-    String CUSTOM_ACTION = "com.example.pizzaplanetapp.CARTID";
+    String CART_ID_ACTION = "com.example.pizzaplanetapp.CARTID";
 
     DatabaseReference database,removeCart;
     FirebaseDatabase fireBase;//Firebase variable
@@ -72,7 +72,7 @@ public class ShoppingCart extends AppCompatActivity {
 
         myReceiver = new shoppingCartReceiver();
 
-        IntentFilter filter = new IntentFilter(CUSTOM_ACTION);
+        IntentFilter filter = new IntentFilter(CART_ID_ACTION);
         registerReceiver(myReceiver,filter);
 
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -91,7 +91,7 @@ public class ShoppingCart extends AppCompatActivity {
 
         recyclerView.setAdapter(shoppingAdapter);
 
-        cartItemSwiping(); //allows for the cart items swipe to delete
+        cartItemSwiping(); //allows for deleting of item from cart by swiping
 
         loadData();//loads the data from firebase
 
@@ -298,12 +298,12 @@ public class ShoppingCart extends AppCompatActivity {
 
 
     static class shoppingCartReceiver extends BroadcastReceiver {
-        String CUSTOM_ACTION = "com.example.pizzaplanetapp.CARTID";
+        String CART_ID_ACTION = "com.example.pizzaplanetapp.CARTID";
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action!=null && action.equals(CUSTOM_ACTION)){
+            if(action!=null && action.equals(CART_ID_ACTION)){
                 cartID = intent.getExtras().get("cart id");
             }
 

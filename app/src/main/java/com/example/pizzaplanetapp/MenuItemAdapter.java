@@ -34,7 +34,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
     private static String cartID = UUID.randomUUID().toString();
 
     private ShoppingCart.shoppingCartReceiver myReceiver;
-    String CUSTOM_ACTION = "com.example.pizzaplanetapp.CARTID";
+    String CART_ID_ACTION = "com.example.pizzaplanetapp.CARTID";
 
     MenuItemAdapter(Context context, ArrayList<MenuItem> MenuItem) {
         this.mMenuItem = MenuItem;
@@ -59,11 +59,11 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
     private void broadcastCartID() {
         myReceiver = new ShoppingCart.shoppingCartReceiver();
 
-        IntentFilter filter = new IntentFilter(CUSTOM_ACTION);
+        IntentFilter filter = new IntentFilter(CART_ID_ACTION);
         mContext.registerReceiver(myReceiver,filter);
 
         Intent passCartIDIntent = new Intent();
-        passCartIDIntent.setAction("com.example.pizzaplanetapp.CARTID");
+        passCartIDIntent.setAction(CART_ID_ACTION);
         passCartIDIntent.putExtra("cart id", cartID);
         mContext.sendBroadcast(passCartIDIntent);
 
@@ -141,10 +141,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
             mRef.child("price").setValue(currentMeal.getPrice());
             mRef.child("position").setValue(String.valueOf(Menu.getCounter()));
             Menu.increaseCartCount();
-
-            //detail & description of the item isn't needed for cart but here just in case
-            //mRef.child("detail").setValue(mTitleText.getText());
-            //mRef.child("description").setValue(mTitleText.getText());
 
         }
 

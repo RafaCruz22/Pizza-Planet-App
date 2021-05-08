@@ -54,7 +54,7 @@ public class AppetizersFragment extends Fragment {
 
         recyclerViewAppetizer.setAdapter(adapter);
 
-        initializeData();
+        initializeData();//loads all the data to appetizer array
 
         adapter.notifyDataSetChanged();
 

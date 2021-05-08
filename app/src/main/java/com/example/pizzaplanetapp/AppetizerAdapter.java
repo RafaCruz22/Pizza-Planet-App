@@ -128,10 +128,6 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
 
         Menu.increaseCartCount();
 
-        //detail & description of the item isn't needed for cart ebut here just in case
-        //mRef.child("detail").setValue(mTitleText.getText());
-        //mRef.child("description").setValue(mTitleText.getText());
-
     }
 
 }
