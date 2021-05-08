@@ -150,6 +150,7 @@
     <string name="deafult_priceText">$000</string>
     <string name="appetizer_btn_defaultText">Details</string>
     <string name="beverages_btn_defaultDetailText">Details</string>
+    <string name="beverages_Descript">logo_beverages</string>
 
 
 </resources>
