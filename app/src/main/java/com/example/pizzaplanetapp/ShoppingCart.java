@@ -296,7 +296,6 @@ public class ShoppingCart extends AppCompatActivity {
         return cartID;
     }
 
-
     static class shoppingCartReceiver extends BroadcastReceiver {
         String CART_ID_ACTION = "com.example.pizzaplanetapp.CARTID";
 

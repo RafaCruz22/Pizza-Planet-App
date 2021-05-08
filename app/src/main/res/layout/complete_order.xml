@@ -83,8 +83,6 @@
             android:layout_alignParentStart="true"
             android:text="@string/orderTotalItemLabel_defaultText"
             android:textSize="@dimen/orderTotalLabel_defaultTextSize"
-
-
             android:textColor="@color/white"
             tools:ignore="RelativeOverlap" />
 
@@ -132,8 +130,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="@dimen/order_btnDefaultMargin"
             android:text="@string/order_btnMoreInfo_defaultText"
-            android:background="@color/green"
-            android:onClick="btn_moreInfo"/>
+            android:onClick="btn_moreInfo"
+            android:backgroundTint="@color/green"
+            style="?attr/materialButtonOutlinedStyle"/>
 
         <Button
             android:layout_below="@id/totalAmountSummary_TextView"
@@ -142,8 +141,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/order_btnDefaultMargin"
             android:text="@string/order_btnCallStore_defaultText"
-            android:background="@color/green"
-            android:onClick="btn_callStore" />
+            android:onClick="btn_callStore"
+            android:backgroundTint="@color/green"
+            style="?attr/materialButtonOutlinedStyle"/>
 
     </RelativeLayout>
 

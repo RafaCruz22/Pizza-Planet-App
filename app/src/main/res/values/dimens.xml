@@ -32,7 +32,7 @@
     <dimen name="orderInclude_TopMargin">5dp</dimen>
     <dimen name="order_defaultTextSize">24sp</dimen>
     <dimen name="order_defaultMargin">5dp</dimen>
-    <dimen name="order_btnDefaultMargin">100dp</dimen>
+    <dimen name="order_btnDefaultMargin">80dp</dimen>
     <dimen name="orderDefault_endMargin">15dp</dimen>
 
 
