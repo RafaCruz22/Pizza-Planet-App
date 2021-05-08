@@ -149,6 +149,7 @@
     <string name="order_btnCallStore_defaultText">Call Store</string>
     <string name="deafult_priceText">$000</string>
     <string name="appetizer_btn_defaultText">Details</string>
+    <string name="beverages_btn_defaultDetailText">Details</string>
 
 
 </resources>

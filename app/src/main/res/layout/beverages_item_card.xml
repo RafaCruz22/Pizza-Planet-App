@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/beverageTitle"
             android:padding="16dp"
-            android:text="Details" />
+            android:text="@string/beverages_btn_defaultDetailText" />
 
     </RelativeLayout>
 
