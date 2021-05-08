@@ -64,8 +64,6 @@ public class ShoppingCart extends AppCompatActivity {
     FirebaseDatabase fireBase;//Firebase variable
     ItemTouchHelper itemTouchHelper;// for drag and swipe
 
-    public static void resetTotalPrice(){ totalPrice = 0;}
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +82,7 @@ public class ShoppingCart extends AppCompatActivity {
 
         textTotalPrice = findViewById(R.id.totalPriceCart);
 
-        //Reference to firebase database starting at pizza node
+        //Reference to firebase database starting at carts node
         database = FirebaseDatabase.getInstance().getReference("carts");
 
         // initialize the array that will be used to hold the cart items
@@ -93,6 +91,16 @@ public class ShoppingCart extends AppCompatActivity {
 
         recyclerView.setAdapter(shoppingAdapter);
 
+        cartItemSwiping(); //allows for the cart items swipe to delete
+
+        loadData();//loads the data from firebase
+
+        completeOrderFAB();//fab for completing your order
+
+        Log.d(TAG, "end of onCreate");
+    }
+
+    private void cartItemSwiping(){
 
         itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(dragDirections,swipeDirection) {
 
@@ -130,8 +138,9 @@ public class ShoppingCart extends AppCompatActivity {
 
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
-        //loads the data from firebase
-        loadData();
+    }
+
+    private void completeOrderFAB(){
 
         //takes user to order summary and resets values and cart
         completeOrder = findViewById(R.id.completeOrderFAB);
@@ -164,7 +173,6 @@ public class ShoppingCart extends AppCompatActivity {
             }
         });
 
-        Log.d(TAG, "end of onCreate");
     }
 
     //writes the completed cart to order
@@ -172,7 +180,11 @@ public class ShoppingCart extends AppCompatActivity {
         for(int i = 0;i < itemCount;i++) {
 
             fireBase = FirebaseDatabase.getInstance();
-            DatabaseReference mRef = fireBase.getReference().child("orders").child("order" + orderId).child("item" + i);
+            DatabaseReference mRef = fireBase.getReference()
+                    .child("orders")
+                    .child("order" + orderId)
+                    .child("item" + i);
+
             mRef.child("title").setValue(cartData.get(i).getTitle());
             mRef.child("price").setValue(cartData.get(i).getPrice());
 
@@ -217,26 +229,7 @@ public class ShoppingCart extends AppCompatActivity {
         Log.d(TAG, "end of loadData");
     }
 
-    //if cart doesn't exist in database when
-    //menu is onPause then set the cart to empty
-    @Override
-    protected void onPause() {
-        super.onPause();
-        database.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.exists()){
-                    Menu.resetCart();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
+    public static void resetTotalPrice(){ totalPrice = 0;}
 
     //activates a notification letting user know order is complete
     //and order will be ready in 20 minutes
@@ -271,6 +264,26 @@ public class ShoppingCart extends AppCompatActivity {
         notificationBuilder.setContentIntent(pendingIntent);
         notificationManager.notify(NOTIFICATION_ID_0, notificationBuilder.build());
 
+    }
+
+    //if cart doesn't exist in database when
+    //menu is onPause then set the cart to empty
+    @Override
+    protected void onPause() {
+        super.onPause();
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.exists()){
+                    Menu.resetCart();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override

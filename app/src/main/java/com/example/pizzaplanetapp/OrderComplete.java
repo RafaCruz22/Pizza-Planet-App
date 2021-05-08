@@ -54,7 +54,6 @@ public class OrderComplete extends AppCompatActivity {
         itemCount = intent.getExtras().get("item count");
         orderID = intent.getExtras().get("order id");
 
-
         recyclerView = findViewById(R.id.recyclerCartView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, girdColumnCount));
 
@@ -72,7 +71,6 @@ public class OrderComplete extends AppCompatActivity {
         orderAdapter = new OrderAdapter(this, orderData);
 
         recyclerView.setAdapter(orderAdapter);
-
 
         loadData();
     }

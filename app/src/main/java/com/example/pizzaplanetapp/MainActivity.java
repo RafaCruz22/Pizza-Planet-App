@@ -118,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String radio_video = sharedPref.getString("videos", "short video");
         if (radio_video.equals("short video")) {
-            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetshortvid);
+            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
         }
         if (radio_video.equals("medium video")) {
-            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetintro);
+            videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.pizzaplanetmediumvideo);
         }
         if (radio_video.equals("long video")) {
             videov.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.toystorypizzaplanet);

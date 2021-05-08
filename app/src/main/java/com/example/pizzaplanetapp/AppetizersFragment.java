@@ -61,11 +61,7 @@ public class AppetizersFragment extends Fragment {
         return rootView;
     }
 
-
-
-
     // initializeData locally using strings.
-
     public void initializeData() {
         database.addValueEventListener(new ValueEventListener() {
             @Override

@@ -1,10 +1,6 @@
 package com.example.pizzaplanetapp;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,56 +18,54 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+public class BeveragesAdapter extends RecyclerView.Adapter<BeveragesAdapter.BeveragesAdapterHolder> {
 
-public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.AppetizerAdapterHolder> {
-
-    private  Context context;
-    private static ArrayList<AppetizerItem> appetizerItems;
+    private Context context;
+    private static ArrayList<BeveragesItem> beveragesItems;
     private static int counter = Menu.getCounter(); //used to create a new item in cart
     private static Object cartID;
 
     FirebaseDatabase database;//Firebase variable
 
-    AppetizerAdapter(Context context, ArrayList<AppetizerItem> AppetizerItems){
-        this.appetizerItems = AppetizerItems;
+    BeveragesAdapter(Context context, ArrayList<BeveragesItem> BeveragesItems){
+        this.beveragesItems = BeveragesItems;
         this.context = context;
 
     }
 
     @NonNull
     @Override
-    public AppetizerAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AppetizerAdapterHolder(LayoutInflater.from(context).
-                inflate(R.layout.appetizer_item_card,parent,false));
+    public BeveragesAdapter.BeveragesAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new BeveragesAdapter.BeveragesAdapterHolder(LayoutInflater.from(context).
+                inflate(R.layout.beverages_item_card,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AppetizerAdapterHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BeveragesAdapter.BeveragesAdapterHolder holder, int position) {
 
-        AppetizerItem item = appetizerItems.get(position);
+        BeveragesItem item = beveragesItems.get(position);
         holder.bindTo(item);
 
     }
 
     @Override
     public int getItemCount() {
-        return appetizerItems.size();
+        return beveragesItems.size();
     }
 
-    protected class AppetizerAdapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    protected class BeveragesAdapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView titleTextApp;
         private ImageView imageApp;
         private Button buttonApp;
 
-        public AppetizerAdapterHolder(@NonNull View itemView) {
+        public BeveragesAdapterHolder(@NonNull View itemView) {
             super(itemView);
 
-            titleTextApp = itemView.findViewById(R.id.appetizerTitle);
-            imageApp = itemView.findViewById(R.id.appetizerImage);
-            buttonApp = itemView.findViewById(R.id.appetizer);
+            titleTextApp = itemView.findViewById(R.id.beverageTitle);
+            imageApp = itemView.findViewById(R.id.beverageImage);
+            buttonApp = itemView.findViewById(R.id.beverage);
 
             itemView.setOnClickListener(this);
-
 
         }
 
@@ -80,7 +74,7 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
 
         }
 
-        public void bindTo(AppetizerItem item) {
+        public void bindTo(BeveragesItem item) {
 
             titleTextApp.setText(item.getTitle());
             buttonApp.setText(item.getDetail() + "  Price: $" + item.getPrice());
@@ -105,7 +99,7 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
 
     //creates a "cart" node in the firebase database to represent
     // a shopping cart with the items a user selects
-    private void writeToDatabaseCart(AppetizerItem currentMeal){
+    private void writeToDatabaseCart(BeveragesItem currentMeal){
 
         database = FirebaseDatabase.getInstance();
         DatabaseReference mRef = database

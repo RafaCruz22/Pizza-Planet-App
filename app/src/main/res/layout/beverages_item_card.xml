@@ -16,40 +16,40 @@
         android:layout_gravity="center_horizontal">
 
         <ImageView
-            android:id="@+id/appetizerImage"
+            android:id="@+id/beverageImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true" />
 
 
         <TextView
-            android:id="@+id/appetizerTitle"
+            android:id="@+id/beverageTitle"
             style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/appetizerImage"
+            android:layout_alignBottom="@+id/beverageImage"
             android:padding="8dp"
             android:text="@string/title"
             android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
         <TextView
-            android:id="@+id/appetizerDescription"
+            android:id="@+id/beverageDescription"
             style="@style/DetailText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/appetizerTitle"
+            android:layout_below="@+id/beverageTitle"
             android:padding="8dp"
             android:text="@string/food_description"
             android:visibility="gone"
             />
 
         <Button
-            android:id="@+id/appetizer"
+            android:id="@+id/beverage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/appetizerTitle"
+            android:layout_below="@+id/beverageTitle"
             android:padding="16dp"
-            android:text="@string/appetizer_btn_defaultText" />
+            android:text="Details" />
 
     </RelativeLayout>
 

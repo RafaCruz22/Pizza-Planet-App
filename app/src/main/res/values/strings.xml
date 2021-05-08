@@ -80,22 +80,6 @@
 
     <string name="app_name">Pizza Planet App</string>
     <string name="pizza_and_beyond">TO PIZZA AND BEYOND!</string>
-    <string name="mozzarella_sticks">Mozzarella Sticks</string>
-    <string name="garlic_knots">Garlic Knots</string>
-    <string name="buffalo_wings">Buffalo Wings</string>
-    <string name="water">Water</string>
-    <string name="sprite">Sprite</string>
-    <string name="coca_cola">Coca Cola</string>
-    <string name="pepsi">Pepsi</string>
-    <string name="iced_tea">Iced Tea</string>
-    <string name="pepperoni_pizza">Pepperoni Pizza</string>
-    <string name="sausage_pizza">Sausage Pizza</string>
-    <string name="buffalo_pizza">Buffalo Pizza</string>
-    <string name="capricciosa_pizza">Capricciosa Pizza</string>
-    <string name="bacon_pizza">Bacon Pizza</string>
-    <string name="chicken_pizza">Chicken Pizza</string>
-    <string name="prosciutto_and_rocket">Prosciutto and Rocket</string>
-    <string name="margherita_pizza">Margherita Pizza</string>
     <string name="fab_desc">takes user to cart</string>
     <string name="pizzaplanetbanner">pizzaPlanetBanner</string>
     <string name="tv_emptyCart_text">Shopping Cart Is Empty</string>
@@ -116,8 +100,27 @@
     <string name="address_title">Default Address</string>
     <string name="pizza_planet_address">Pixar Animation Studios 1200 Park Avenue Emeryville, California 94608</string>
 
+    <!--    Pizza Fragment-->
+    <string name="pepperoni_pizza">Pepperoni Pizza</string>
+    <string name="sausage_pizza">Sausage Pizza</string>
+    <string name="buffalo_pizza">Buffalo Pizza</string>
+    <string name="capricciosa_pizza">Capricciosa Pizza</string>
+    <string name="bacon_pizza">Bacon Pizza</string>
+    <string name="chicken_pizza">Chicken Pizza</string>
+    <string name="prosciutto_and_rocket">Prosciutto and Rocket</string>
+    <string name="margherita_pizza">Margherita Pizza</string>
 
+    <!--    Appetizer Fragment-->
+    <string name="mozzarella_sticks">Mozzarella Sticks</string>
+    <string name="garlic_knots">Garlic Knots</string>
+    <string name="buffalo_wings">Buffalo Wings</string>
 
+    <!--    Beverages Fragment-->
+    <string name="coca_cola">Coca Cola</string>
+    <string name="water">Water</string>
+    <string name="sprite">Sprite</string>
+    <string name="pepsi">Pepsi</string>
+    <string name="iced_tea">Iced Tea</string>
 
     <!--    Cart Item -->
     <string name="cartItem_MealImageDesc">picture of the meal</string>
@@ -133,7 +136,6 @@
     <string name="shopCartTotalTV_defaultText">Total:</string>
     <string name="shopCartPriceTV_defaultText">$000</string>
 
-
     <!--    Order Complete-->
     <string name="orderComplete_logoDesc">Logo</string>
     <string name="orderBanner_defaultText">Order Complete</string>
@@ -146,6 +148,7 @@
     <string name="order_btnMoreInfo_defaultText">More Info</string>
     <string name="order_btnCallStore_defaultText">Call Store</string>
     <string name="deafult_priceText">$000</string>
+    <string name="appetizer_btn_defaultText">Details</string>
 
 
 </resources>
