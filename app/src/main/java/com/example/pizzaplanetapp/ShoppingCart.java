@@ -249,7 +249,8 @@ public class ShoppingCart extends AppCompatActivity {
             notificationBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
                     .setContentTitle("Order is complete")
                     .setContentText("Ready for pick up in 20 minutes!")
-                    .setSmallIcon(R.drawable.ic_action_pizza);
+                    .setSmallIcon(R.drawable.ic_action_pizza)
+                    .setAutoCancel(true);
 
         }else {
 
@@ -257,7 +258,8 @@ public class ShoppingCart extends AppCompatActivity {
                     .setPriority(IMPORTANCE_LEVEL)
                     .setContentTitle("Order is complete")
                     .setContentText("Ready for pick up in 20 minutes!")
-                    .setSmallIcon(R.drawable.ic_action_pizza);
+                    .setSmallIcon(R.drawable.ic_action_pizza)
+                    .setAutoCancel(true);
 
         }
 
