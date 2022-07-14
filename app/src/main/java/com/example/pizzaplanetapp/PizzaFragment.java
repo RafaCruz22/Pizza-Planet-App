@@ -91,12 +91,12 @@ public class PizzaFragment extends Fragment {
     public void initializeData() {
         database.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(DataSnapshot snapshot) {
 
                 MenuItem.clear();//assures no duplicates are introduced
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                for (DataSnapshot child : snapshot.getChildren()) {
 
-                    MenuItem item = dataSnapshot.getValue(MenuItem.class);
+                    MenuItem item = child.getValue(MenuItem.class);
                     MenuItem.add(item);
                     Log.d("items", "" + MenuItem);
                 }
@@ -112,38 +112,36 @@ public class PizzaFragment extends Fragment {
     }
 
 
-    // initializeData locally using strings.
-/*
-    public void initializeData() {
-        TypedArray mealImageResources = getResources().obtainTypedArray(R.array.meal_images);
-
-        // Get the resources from the XML file.
-        String[] menuList = getResources()
-                .getStringArray(R.array.meal_titles);
-        String[] mealInfo = getResources()
-                .getStringArray(R.array.meal_info);
-        String[] mealDetail = getResources()
-                .getStringArray(R.array.meal_detail);
-
-
-        // Clear the existing data (to avoid duplication).
-        MenuItem.clear();
-
-        // Create the ArrayList of Menu objects with titles and
-        // information about each item.
-        for (int i = 0; i < menuList.length; i++) {
-            MenuItem.add(new MenuItem(menuList[i], mealInfo[i], mealDetail[i],
-                    mealImageResources.getResourceId(i, 0)));
-        }
-        //Clean up the data in the typed array once you have created the MenuItem ArrayList
-        mealImageResources.recycle();
-
-        // Notify the adapter of the change.
-        mAdapter.notifyDataSetChanged();
-
-
-    }
-*/
-
+//    // initializeData locally using strings.
+//
+//    public void initializeData() {
+//        TypedArray mealImageResources = getResources().obtainTypedArray(R.array.meal_images);
+//
+//        // Get the resources from the XML file.
+//        String[] menuList = getResources()
+//                .getStringArray(R.array.meal_titles);
+//        String[] mealInfo = getResources()
+//                .getStringArray(R.array.meal_info);
+//        String[] mealDetail = getResources()
+//                .getStringArray(R.array.meal_detail);
+//
+//
+//        // Clear the existing data (to avoid duplication).
+//        MenuItem.clear();
+//
+//        // Create the ArrayList of Menu objects with titles and
+//        // information about each item.
+//        for (int i = 0; i < menuList.length; i++) {
+//            MenuItem.add(new MenuItem(menuList[i], mealInfo[i], mealDetail[i],
+//                    mealImageResources.getResourceId(i, 0)));
+//        }
+//        //Clean up the data in the typed array once you have created the MenuItem ArrayList
+//        mealImageResources.recycle();
+//
+//        // Notify the adapter of the change.
+//        mAdapter.notifyDataSetChanged();
+//
+//
+//    }
 
 }

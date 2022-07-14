@@ -8,8 +8,10 @@ public class MenuItem {
     private String imageResource;
     private String price;
 
-    MenuItem() { //needed for Firebase
-    }
+    MenuItem() {} //needed for Firebase
+
+//    MenuItem(String s, String s1, String s2, int resourceId) { //needed for Firebase
+//    }
     /**
      * Constructor for the MenuItem data model.
      **/
